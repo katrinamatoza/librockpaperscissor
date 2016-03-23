@@ -6,7 +6,7 @@
  * Time: 8:58 PM
  */
 
-namespace RockPaperScissor\Rules\Validation;
+namespace Balwan\RockPaperScissor\Rules\Validation;
 
 /**
  * Class Message

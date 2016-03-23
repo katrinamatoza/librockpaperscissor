@@ -1,6 +1,6 @@
 <?php
 
-namespace RockPaperScissor\Players;
+namespace Balwan\RockPaperScissor\Players;
 
 class Players
 {

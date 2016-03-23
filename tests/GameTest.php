@@ -9,12 +9,12 @@
 namespace RockPaperScissor\Tests;
 
 
-use RockPaperScissor\Games\Game;
-use RockPaperScissor\Players\Player;
-use RockPaperScissor\Players\Players;
-use RockPaperScissor\Rules\Rule;
-use RockPaperScissor\Rules\Rules;
-use RockPaperScissor\Rules\Validation\Message;
+use Balwan\RockPaperScissor\Games\Game;
+use Balwan\RockPaperScissor\Players\Player;
+use Balwan\RockPaperScissor\Players\Players;
+use Balwan\RockPaperScissor\Rules\Rule;
+use Balwan\RockPaperScissor\Rules\Rules;
+use Balwan\RockPaperScissor\Rules\Validation\Message;
 
 class GameTest extends \PHPUnit_Framework_TestCase
 {

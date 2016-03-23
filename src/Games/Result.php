@@ -6,10 +6,10 @@
  * Time: 8:33 PM
  */
 
-namespace RockPaperScissor\Games;
+namespace Balwan\RockPaperScissor\Games;
 
 
-use RockPaperScissor\Rules\Rule;
+use Balwan\RockPaperScissor\Rules\Rule;
 
 class Result
 {

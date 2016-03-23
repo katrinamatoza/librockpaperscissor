@@ -1,10 +1,10 @@
 <?php
 
-namespace RockPaperScissor\Rules;
+namespace Balwan\RockPaperScissor\Rules;
 
 use Exception;
-use RockPaperScissor\Rules\Validation\Message;
-use RockPaperScissor\Rules\Validation\ValidationResult;
+use Balwan\RockPaperScissor\Rules\Validation\Message;
+use Balwan\RockPaperScissor\Rules\Validation\ValidationResult;
 
 class Rules
 {

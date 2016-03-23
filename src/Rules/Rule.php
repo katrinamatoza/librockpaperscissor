@@ -1,6 +1,6 @@
 <?php
 
-namespace RockPaperScissor\Rules;
+namespace Balwan\RockPaperScissor\Rules;
 
 use Exception;
 

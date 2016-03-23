@@ -6,10 +6,10 @@
  * Time: 8:37 PM
  */
 
-namespace RockPaperScissor\Rules\Validation;
+namespace Balwan\RockPaperScissor\Rules\Validation;
 
 
-use RockPaperScissor\Rules\Validation\Message;
+use Balwan\RockPaperScissor\Rules\Validation\Message;
 
 class ValidationResult
 {

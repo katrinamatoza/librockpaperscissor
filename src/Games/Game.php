@@ -1,10 +1,10 @@
 <?php
 
-namespace RockPaperScissor\Games;
+namespace Balwan\RockPaperScissor\Games;
 
-use RockPaperScissor\Players\Player;
-use RockPaperScissor\Players\Players;
-use RockPaperScissor\Rules\Rules;
+use Balwan\RockPaperScissor\Players\Player;
+use Balwan\RockPaperScissor\Players\Players;
+use Balwan\RockPaperScissor\Rules\Rules;
 
 
 /**

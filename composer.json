@@ -1,5 +1,5 @@
 {
-  "name": "0x90/RockPaperScissor",
+  "name": "balwan/rock-paper-scissor",
   "description": "A PHP library to create games based on Rock Paper Scissor.",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -10,8 +10,11 @@
     }
   ],
   "autoload": {
-    "psr-0": {
-      "RockPaperScissor": "src/"
+    "psr-4": {
+      "Balwan\\RockPaperScissor\\": "src/"
     }
+  },
+  "require": {
+    "league/oauth2-client": "^1.3"
   }
 }
