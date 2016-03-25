@@ -14,6 +14,11 @@
       "Balwan\\RockPaperScissor\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Balwan\\RockPaperScissor\\": "tests/"
+    }
+  },
   "require": {
     "rmccue/requests": ">=1.0"
   }
