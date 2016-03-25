@@ -39,10 +39,6 @@ class Rule
      */
     public function __construct(string $winner, string $loser, string $outcome)
     {
-        if($winner == $loser) {
-            throw new Exception("Winner and Loser cannot be the same");
-        }
-
         $this->winner = trim($winner);
         $this->loser = trim($loser);
         $this->outcome = trim($outcome);

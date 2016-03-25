@@ -23,7 +23,7 @@ class Rules
      */
     public function addRule(Rule $rule)
     {
-        $this->rules[md5($rule->getWinner().$rule->getLoser())] = $rule;
+        $this->rules[md5(strtolower($rule->getWinner().$rule->getLoser()))] = $rule;
     }
 
     /**
@@ -33,13 +33,27 @@ class Rules
      * @throws Exception
      */
     public function getRule(string $winner, string $loser) {
-        $key = md5($winner.$loser);
+        $key = md5(strtolower($winner.$loser));
 
         if(!isset($this->rules[$key])) {
             return null;
         }
 
         return $this->rules[$key];
+    }
+
+    /**
+     * @return array
+     */
+    public function getWeapons() : array {
+        $weapons = [];
+
+        /* @var Rule $rule */
+        foreach($this->rules as $rule) {
+            $weapons[] = $rule->getWinner();
+        }
+
+        return array_unique($weapons);
     }
 
     /**

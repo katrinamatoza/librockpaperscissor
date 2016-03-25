@@ -4,6 +4,7 @@ namespace Balwan\RockPaperScissor\Games;
 
 use Balwan\RockPaperScissor\Players\Player;
 use Balwan\RockPaperScissor\Players\Players;
+use Balwan\RockPaperScissor\Rules\Rule;
 use Balwan\RockPaperScissor\Rules\Rules;
 
 
@@ -41,6 +42,14 @@ class Game
         $this->rules = $rules;
     }
 
+    public function getPlayer1() : Player {
+        return $this->player1;
+    }
+
+    public function getPlayer2() : Player {
+        return $this->player2;
+    }
+
     /**
      * Obtains the rules that matched the plays done by the players. In more complex variations of RPS there can be
      * multiple outcomes from the
@@ -58,6 +67,6 @@ class Game
             return $winner;
         }
 
-        return null;
+        return new Rule($this->player1->getPlay(), $this->player2->getPlay(), "Ties");
     }
 }
