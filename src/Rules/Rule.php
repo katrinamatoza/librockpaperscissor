@@ -47,7 +47,7 @@ class Rule
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->winner." ".$this->outcome." ".$this->loser;
     }
@@ -55,7 +55,7 @@ class Rule
     /**
      * @return string
      */
-    public function getWinner()
+    public function getWinner() : string
     {
         return $this->winner;
     }
@@ -63,7 +63,7 @@ class Rule
     /**
      * @return string
      */
-    public function getLoser()
+    public function getLoser() : string
     {
         return $this->loser;
     }
@@ -71,8 +71,12 @@ class Rule
     /**
      * @return string
      */
-    public function getOutcome()
+    public function getOutcome() : string
     {
         return $this->outcome;
+    }
+
+    public function getText() : string {
+        return $this->__toString();
     }
 }

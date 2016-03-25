@@ -1,11 +1,16 @@
 <?php
-
+/**
+ * 
+ */
 namespace Balwan\RockPaperScissor\Rules;
 
-use Exception;
 use Balwan\RockPaperScissor\Rules\Validation\Message;
 use Balwan\RockPaperScissor\Rules\Validation\ValidationResult;
 
+/**
+ * Class Rules
+ * @package Balwan\RockPaperScissor\Rules
+ */
 class Rules
 {
     /**
@@ -15,25 +20,26 @@ class Rules
     private $rules = [];
 
     /**
-     * Adds a rule to the list of
-     * @param string $winner
-     * @param string $loser
-     * @param string $outcome
-     * @throws Exception
+     * @param Rule $rule
      */
     public function addRule(Rule $rule)
     {
-        $this->rules[md5(strtolower($rule->getWinner().$rule->getLoser()))] = $rule;
+        $winner = mb_strtolower(trim($rule->getWinner()));
+        $loser = mb_strtolower(trim($rule->getLoser()));
+
+        $this->rules[md5($winner.$loser)] = $rule;
     }
 
     /**
      * @param string $winner
      * @param string $loser
-     * @return Rule
-     * @throws Exception
+     * @return mixed|null
      */
-    public function getRule(string $winner, string $loser) {
-        $key = md5(strtolower($winner.$loser));
+    public function getRule(string $winner, string $loser)
+    {
+        $winner = mb_strtolower(trim($winner));
+        $loser = mb_strtolower(trim($loser));
+        $key = md5($winner.$loser);
 
         if(!isset($this->rules[$key])) {
             return null;

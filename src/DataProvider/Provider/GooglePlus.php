@@ -14,6 +14,16 @@ use Balwan\RockPaperScissor\Players\Players;
  * @package Balwan\RockPaperScissor\DataProvider
  */
 class GooglePlus implements DataProviderInterface {
+    /**
+     *
+     */
+    const URL = "https://www.googleapis.com/plus/v1/activities";
+
+    /**
+     *
+     */
+    const MAX_RESULTS = 20;
+
     public function __construct(string $apiKey)
     {
     }
@@ -26,26 +36,28 @@ class GooglePlus implements DataProviderInterface {
     public function get(string $query) : array
     {
         $players = [];
+        $play = ucfirst(strtolower(trim($query)));
 
         $parameters = [
-            "key" => "xxxxxx",
+            "key" => "x",
             "query" => "#".$query,
             "maxResults" => 20
         ];
 
-        $headers = array('Accept' => 'application/json', "Accept-Encoding" => "gzip");
+        $headers = [
+            "Accept" => "application/json",
+            "Accept-Encoding" => "gzip"
+        ];
 
-        $url = "https://www.googleapis.com/plus/v1/activities";
         $q = http_build_query($parameters);
 
-        $response = Requests::get($url."?".$q, $headers);
-
+        $response = Requests::get(GooglePlus::URL."?".$q, $headers);
         $data = json_decode($response->body);
 
         foreach($data->items as $d) {
-            $players[] = new Player($d->actor->displayName, $query);
+            $players[] = new Player($d->actor->displayName, $play);
         }
 
-        return $players;
+        return count($players) % 2 == 0 ? $players : array_slice($players, 0, count($players) - 1);
     }
 }
