@@ -2,6 +2,7 @@
 
 namespace Balwan\RockPaperScissor\Rules;
 
+use Balwan\RockPaperScissor\Exceptions\MissingDataException;
 use Exception;
 
 /**
@@ -15,21 +16,21 @@ class Rule
      * In a classic Rock Paper Scissor game this could be "Paper".
      * @var string
      */
-    private $winner;
+    private $winner = "";
 
     /**
      * The name of the loser of this rule.
      * In a classic Rock Paper Scissor game this could be "Rock".
      * @var string
      */
-    private $loser;
+    private $loser = "";
 
     /**
      * The designation for this outcome.
      * In a classic Rock Paper Scissor game this could be "beats" or "covers"
      * @var string
      */
-    private $outcome;
+    private $outcome = "";
 
     /**
      * Rule constructor.
@@ -39,6 +40,18 @@ class Rule
      */
     public function __construct(string $winner, string $loser, string $outcome)
     {
+        if(mb_strlen(trim($winner)) == 0) {
+            throw new MissingDataException("The winner of the rule cannot be empty.");
+        }
+
+        if(mb_strlen(trim($loser)) == 0) {
+            throw new MissingDataException("The loser of the rule cannot be empty.");
+        }
+
+        if(mb_strlen(trim($outcome)) == 0) {
+            throw new MissingDataException("The outcome of the rule cannot be empty.");
+        }
+
         $this->winner = trim($winner);
         $this->loser = trim($loser);
         $this->outcome = trim($outcome);
