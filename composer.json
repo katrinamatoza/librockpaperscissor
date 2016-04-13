@@ -20,7 +20,5 @@
     }
   },
   "require": {
-    "rmccue/requests": ">=1.0",
-    "vlucas/phpdotenv": "^2.2"
   }
 }

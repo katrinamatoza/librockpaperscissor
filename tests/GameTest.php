@@ -23,12 +23,10 @@
  */
 namespace RockPaperScissor\Tests;
 
-use Balwan\RockPaperScissor\DataProvider\Provider\GooglePlus;
 use Balwan\RockPaperScissor\Games\Game;
 use Balwan\RockPaperScissor\Players\Player;
 use Balwan\RockPaperScissor\Rules\Rule;
 use Balwan\RockPaperScissor\Rules\Rules;
-use Dotenv\Dotenv;
 
 /**
  * Class GameTest
@@ -132,76 +130,5 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $game = new Game($player1, $player2, $rules);
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Paper Disproves Spock");
-    }
-
-//    public function testSuccessValidationWithRockPaperScissors() {
-//        $rules = new Rules();
-//
-//        $rules->addRule(new Rule("Paper", "Rock", "Beats"));
-//        $rules->addRule(new Rule("Scissor", "Paper", "Beats"));
-//        $rules->addRule(new Rule("Rock", "Scissor", "Beats"));
-//
-//        $validation = $rules->validate();
-//        $this->assertEquals(3, $validation->totalWeapons);
-//        $this->assertCount(0, $validation->messages, "Should have no validation fails");
-//    }
-//
-//    public function testFailValidationWithRockPaperScissorsLizardSpock() {
-//        $rules = new Rules();
-//
-//        $rules->addRule(new Rule("Scissors", "Paper", "Cuts"));
-//        $rules->addRule(new Rule("Scissors", "Rock", "Covers"));
-//        $rules->addRule(new Rule("Rock", "Lizard", "Crushes"));
-//        $rules->addRule(new Rule("Lizard", "Spock", "Poisons"));
-//        $rules->addRule(new Rule("Spock", "Scissors", "Smashes"));
-//        $rules->addRule(new Rule("Scissors", "Lizard", "Decapitates"));
-//        $rules->addRule(new Rule("Lizard", "Paper", "Eats"));
-//        $rules->addRule(new Rule("Paper", "Spock", "Disproves"));
-//        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
-//        $rules->addRule(new Rule("Rock", "Scissors", "Crushes"));
-//        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
-//
-//        $validation = $rules->validate();
-//        $this->assertEquals(5, $validation->totalWeapons);
-//        $this->assertCount(2, $validation->messages, "Should have two validation fails");
-//        $this->assertEquals("Scissors has 3 winning moves so it should have 2 losing moves", $validation->messages[0]->getMessage());
-//        $this->assertEquals("Paper has 1 winning moves so it should have 2 losing moves", $validation->messages[1]->getMessage());
-//    }
-//
-    public function testGooglePlus() {
-        $environment = new Dotenv(__DIR__);
-        $environment->load();
-
-        $provider = new GooglePlus(getenv("GOOGLE_PLUS_API_KEY"));
-        $players = [];
-
-        $rules = new Rules();
-        $rules->addRule(new Rule("Scissors", "Paper", "Cuts"));
-        $rules->addRule(new Rule("Paper", "Rock", "Covers"));
-        $rules->addRule(new Rule("Rock", "Lizard", "Crushes"));
-        $rules->addRule(new Rule("Lizard", "Spock", "Poisons"));
-        $rules->addRule(new Rule("Spock", "Scissors", "Smashes"));
-        $rules->addRule(new Rule("Scissors", "Lizard", "Decapitates"));
-        $rules->addRule(new Rule("Lizard", "Paper", "Eats"));
-        $rules->addRule(new Rule("Paper", "Spock", "Disproves"));
-        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
-        $rules->addRule(new Rule("Rock", "Scissors", "Crushes"));
-        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
-
-        $weapons = $rules->getWeapons();
-
-        foreach($weapons as $weapon) {
-            $players = array_merge($players, $provider->get(strtolower($weapon)));
-        }
-
-        shuffle($players);
-
-        for($i = 0; $i < count($players); $i += 2) {
-            $game = new Game($players[$i], $players[$i + 1], $rules);
-            $result = $game->result();
-
-            echo "\n";
-            echo $result;
-        }
     }
 }
