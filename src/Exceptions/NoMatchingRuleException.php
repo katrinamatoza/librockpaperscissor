@@ -29,7 +29,7 @@ use Exception;
  * Class NoMatchingRuleException
  * @package Exceptions
  */
-class NoMatchingRuleException
+class NoMatchingRuleException extends Exception
 {
     /**
      * NoMatchingRuleException constructor.
