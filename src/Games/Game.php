@@ -73,16 +73,17 @@ class Game
      */
     public function result() : Result
     {
-        $win = $this->rules->getRule($this->player1->getPlay(), $this->player2->getPlay());
-        if(!is_null($win)) {
-            return new Result($this->player1, $this->player2, $win);
+        $player1Wins = $this->rules->getRule($this->player1->getPlay(), $this->player2->getPlay());
+        if(!is_null($player1Wins)) {
+            return new Result($this->player1, $this->player2, $player1Wins);
         }
 
-        $win = $this->rules->getRule($this->player2->getPlay(), $this->player1->getPlay());
-        if(!is_null($win)) {
-            return new Result($this->player2, $this->player1, $win);
+        $player2Wins = $this->rules->getRule($this->player2->getPlay(), $this->player1->getPlay());
+        if(!is_null($player2Wins)) {
+            return new Result($this->player2, $this->player1, $player2Wins);
         }
 
+        // TODO Much better to have a Tie class to signal that the result if a tie along with a result interface.
         $tie = new Rule($this->player1->getPlay(), $this->player2->getPlay(), "Ties");
         return new Result($this->player1, $this->player2, $tie);
     }
