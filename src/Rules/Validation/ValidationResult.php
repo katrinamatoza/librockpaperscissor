@@ -23,25 +23,36 @@
  */
 namespace Balwan\RockPaperScissor\Rules\Validation;
 
-
-use Balwan\RockPaperScissor\Rules\Validation\Message;
-
+/**
+ * Class ValidationResult
+ * @package Balwan\RockPaperScissor\Rules\Validation
+ */
 class ValidationResult
 {
+    /**
+     * @var int
+     */
+    public $totalRules = 0;
+
     /**
      * @var int
      */
     public $totalWeapons = 0;
 
     /**
-     * @var array
+     * @var bool
      */
-    public $weapons = [];
+    public $totalWeaponsIsOddNumber = false;
+
+    /**
+     * @var bool
+     */
+    public $rulesAreBalanced = true;
 
     /**
      * @var array
      */
-    public $messages = [];
+    private $messages = [];
 
     /**
      * @param Message $message
@@ -50,4 +61,28 @@ class ValidationResult
         $this->messages[] = $message;
     }
 
+    /**
+     * @return array
+     */
+    public function getMessages() : array
+    {
+        return $this->messages;
+    }
+
+    /**
+     *
+     * @return bool
+     */
+    public function isValid() : bool
+    {
+        $fn = function(int $carry, Message $m) {
+            if($m->getType() === Message::FAIL) {
+                return $carry + 1;
+            }
+
+            return $carry;
+        };
+
+        return array_reduce($this->messages, $fn, 0) === 0;
+    }
 }

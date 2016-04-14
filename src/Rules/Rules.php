@@ -71,46 +71,68 @@ class Rules
      * @return array
      */
     public function getWeapons() : array {
-        $weapons = [];
-
-        /* @var Rule $rule */
-        foreach($this->rules as $rule) {
-            $weapons[] = $rule->getWinner();
-        }
-
-        return array_unique($weapons);
+        return array_unique(array_values(array_map(function(Rule $r) { return $r->getWinner(); }, $this->rules)));
     }
 
     /**
-     * @return ValidationResult The result of the validation of all the rules.
+     * @return ValidationResult
      */
-    public function validate() {
+    public function validate() : ValidationResult {
         $validation = new ValidationResult();
 
-        /** @var Rule $rule */
-        foreach($this->rules as $rule) {
-            $winner = $rule->getWinner();
+        $validation->totalWeapons = count($this->getWeapons());
+        $validation->addMessage(new Message(sprintf("%d Weapons", $validation->totalWeapons)));
 
-            if(!isset($validation->weapons[$winner])) {
-                $validation->weapons[$winner] = 0;
+        $validation->totalRules = count($this->rules);
+        $validation->addMessage(new Message(sprintf("%d Rules", $validation->totalRules)));
+
+        if(($validation->totalWeapons * 2) == $validation->totalRules) {
+            $message = new Message(
+                sprintf("Number of weapons (%d) is consistent with the number of rules (%d)",
+                $validation->totalWeapons,
+                $validation->totalRules)
+            );
+            $validation->addMessage($message);
+        }
+
+        $validation->totalWeaponsIsOddNumber = $validation->totalWeapons % 2 !== 0;
+
+        if($validation->totalWeaponsIsOddNumber) {
+            $validation->addMessage(new Message("Total weapons is an odd number"));
+        } else {
+            $validation->addMessage(new Message("Total weapons is an odd number", Message::FAIL));
+        }
+
+        // Verify that each weapon wins and loses the same amount of times.
+        // The final total of each array should be zero. Each win increments and each loss decrements.
+        $weapons = array_flip($this->getWeapons());
+        foreach($weapons as $weapon => $total) {
+            $weapons[$weapon] = 0;
+
+            /** @var Rule $rule */
+            foreach($this->rules as $rule) {
+                if($rule->getWinner() == $weapon) {
+                    $weapons[$weapon]++;
+                }
+
+                if($rule->getLoser() == $weapon) {
+                    $weapons[$weapon]--;
+                }
             }
 
-            $validation->weapons[$winner]++;
-        }
+            if($validation->rulesAreBalanced && $weapons[$weapon] !== 0) {
+                $validation->rulesAreBalanced = false;
+            }
 
-        $validation->totalWeapons = count($validation->weapons);
-        if($validation->totalWeapons % 2 === 0) {
-            $message = sprintf("Total weapons is not an odd number. You have %d weapons", $validation->totalWeapons);
-            $validation->addMessage(new Message($message, Message::FAIL));
-        }
-
-        $losingMoves = (($validation->totalWeapons - 1) / 2);
-
-        foreach($validation->weapons as $weapon => $winningMoves) {
-            if($winningMoves != $losingMoves) {
-                $message = sprintf("%s has %d winning moves so it should have %d losing moves",
-                    $weapon, $winningMoves, $losingMoves);
-                $validation->addMessage(new Message($message, Message::FAIL));
+            if($weapons[$weapon] === 0) {
+                $message = new Message(sprintf("%s is balanced", $weapon), Message::OK);
+                $validation->addMessage($message);
+            } else if($weapons[$weapon] > 0) {
+                $message = new Message(sprintf("%s has %d extra wins", $weapon, $weapons[$weapon]), Message::FAIL);
+                $validation->addMessage($message);
+            } else if($weapons[$weapon] < 0) {
+                $message = new Message(sprintf("%s has %d extra losses", $weapon, $weapons[$weapon]), Message::FAIL);
+                $validation->addMessage($message);
             }
         }
 

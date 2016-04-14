@@ -85,4 +85,31 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $ruleToObtain = $rules->getRule("Rock", "Spock");
         $this->assertNull($ruleToObtain, "Rule should be null because it does not exist");
     }
+
+    /**
+     *
+     */
+    public function testRulesValidation()
+    {
+        $rules = new Rules();
+
+        $rules->addRule(new Rule("Rock", "Scissors", "Crushes"));
+        $rules->addRule(new Rule("Paper", "Rock", "Covers"));
+        $rules->addRule(new Rule("Scissors", "Paper", "Cuts"));
+        $rules->addRule(new Rule("Rock", "Lizard", "Crushes"));
+        $rules->addRule(new Rule("Lizard", "Spock", "Poisons"));
+        $rules->addRule(new Rule("Spock", "Scissors", "Smashes"));
+        $rules->addRule(new Rule("Scissors", "Lizard", "Decapitates"));
+        $rules->addRule(new Rule("Lizard", "Paper", "Eats"));
+        $rules->addRule(new Rule("Paper", "Spock", "Disproves"));
+        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
+
+        $validation = $rules->validate();
+
+        $this->assertEquals(5, $validation->totalWeapons, "There should only be 5 (unique) weapons in this game!");
+        $this->assertEquals($validation->totalWeapons * 2, $validation->totalRules, "There should be 10 rules!");
+        $this->assertEquals(true, $validation->totalWeaponsIsOddNumber, "Total of weapons should be an odd number!");
+        $this->assertEquals(true, $validation->rulesAreBalanced, "The ruleset is not balanced!");
+        $this->assertEquals(true, $validation->isValid(), "The validation should not have any FAIL messages!");
+    }
 }
