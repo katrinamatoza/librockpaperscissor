@@ -45,6 +45,11 @@ class Message
     const OK = 2;
 
     /**
+     *
+     */
+    const INFO = 3;
+
+    /**
      * @var string
      */
     private $message;
@@ -59,7 +64,7 @@ class Message
      * @param string $message
      * @param int $type
      */
-    public function __construct(string $message, int $type)
+    public function __construct(string $message, int $type = Message::INFO)
     {
         $this->message = $message;
         $this->type = $type;
@@ -80,7 +85,4 @@ class Message
     {
         return $this->type;
     }
-
-
-
 }
