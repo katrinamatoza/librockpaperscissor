@@ -93,6 +93,14 @@ class Rules
                 $validation->totalRules)
             );
             $validation->addMessage($message);
+        } else {
+            $message = new Message(
+                sprintf("Number of weapons (%d) is NOT consistent with the number of rules (%d)",
+                    $validation->totalWeapons,
+                    $validation->totalRules,
+                    Message::FAIL)
+            );
+            $validation->addMessage($message);
         }
 
         $validation->totalWeaponsIsOddNumber = $validation->totalWeapons % 2 !== 0;
@@ -100,7 +108,7 @@ class Rules
         if($validation->totalWeaponsIsOddNumber) {
             $validation->addMessage(new Message("Total weapons is an odd number"));
         } else {
-            $validation->addMessage(new Message("Total weapons is an odd number", Message::FAIL));
+            $validation->addMessage(new Message("Total weapons is NOT an odd number", Message::FAIL));
         }
 
         // Verify that each weapon wins and loses the same amount of times.
