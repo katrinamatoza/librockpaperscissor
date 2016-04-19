@@ -58,6 +58,8 @@ class Rule
      * @param string $winner
      * @param string $loser
      * @param string $outcome
+     * @throws MissingDataException
+     * @throws InvalidRuleException
      */
     public function __construct(string $winner, string $loser, string $outcome)
     {

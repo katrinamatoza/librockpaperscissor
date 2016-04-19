@@ -46,6 +46,7 @@ class Player {
      * Instantiate a player that will be participating in a game.
      * @param string $name The name of the player.
      * @param string $play The play/move that the player will perform in the game.
+     * @throws MissingDataException
      */
     public function __construct(string $name, string $play)
     {
