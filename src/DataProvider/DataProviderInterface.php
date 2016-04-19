@@ -23,14 +23,18 @@
  */
 namespace Balwan\RockPaperScissor\DataProvider;
 
-use Balwan\RockPaperScissor\Players\Players;
+use Balwan\RockPaperScissor\Players\PlayerCollection;
 
+/**
+ * Interface DataProviderInterface
+ * @package Balwan\RockPaperScissor\DataProvider
+ */
 interface DataProviderInterface
 {
     /**
      * Query the data provider for data and return all the players that will be participating and what play they did.
      * @param string $query The query to search for. This should be a #hashtag ideally.
-     * @return array The list of players from this provider and what their play was
+     * @return PlayerCollection The list of players from this provider and what their play was
      */
-    public function get(string $query) : array;
+    public function get(string $query) : PlayerCollection;
 }

@@ -23,20 +23,41 @@
  */
 namespace Balwan\RockPaperScissor\Players;
 
-class Players
+use ArrayIterator;
+use IteratorAggregate;
+
+/**
+ * Class PlayerCollection
+ * @package Balwan\RockPaperScissor\Players
+ */
+class PlayerCollection implements IteratorAggregate
 {
     /**
      * @var array
      */
     private $players = [];
 
+    /**
+     * @param Player $player
+     */
     public function add(Player $player)
     {
         $this->players[] = $player;
     }
 
-    public function getPlayers()
+    /**
+     * @return array
+     */
+    public function getPlayers() : array
     {
         return $this->players;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->players);
     }
 }

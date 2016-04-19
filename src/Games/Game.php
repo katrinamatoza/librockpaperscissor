@@ -25,7 +25,7 @@ namespace Balwan\RockPaperScissor\Games;
 
 use Balwan\RockPaperScissor\Players\Player;
 use Balwan\RockPaperScissor\Rules\Rule;
-use Balwan\RockPaperScissor\Rules\Rules;
+use Balwan\RockPaperScissor\Rules\RuleCollection;
 
 /**
  * This class defines a game between two players and the set of rules that is to be applied.
@@ -35,7 +35,7 @@ class Game
 {
     /**
      * The list of rules that are applicable in this game.
-     * @var Rules
+     * @var RuleCollection
      */
     private $rules;
 
@@ -55,9 +55,9 @@ class Game
      * Instantiate an RPS-style game.
      * @param Player $player1 The first player of this game.
      * @param Player $player2 The second player of this game.
-     * @param Rules $rules The set of rules that are applicable to this game.
+     * @param RuleCollection $rules The set of rules that are applicable to this game.
      */
-    public function __construct(Player $player1, Player $player2, Rules $rules)
+    public function __construct(Player $player1, Player $player2, RuleCollection $rules)
     {
         $this->player1 = $player1;
         $this->player2 = $player2;
@@ -106,9 +106,9 @@ class Game
 
     /**
      * Obtain the rule-set that is applicable to this game.
-     * @return Rules A rules object with all the rules for this game.
+     * @return RuleCollection A rules object with all the rules for this game.
      */
-    public function getRules() : Rules {
+    public function getRules() : RuleCollection {
         return $this->rules;
     }
 }

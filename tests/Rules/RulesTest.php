@@ -33,19 +33,19 @@ class RulesTest extends \PHPUnit_Framework_TestCase
      * Make sure that the weapons array from the ruleset matches the expected data.
      */
     public function testWeapons() {
-        $rules = new Rules();
+        $rules = new RuleCollection();
 
-        $rules->addRule(new Rule("Scissors", "Paper", "Cuts"));
-        $rules->addRule(new Rule("Paper", "Rock", "Covers"));
-        $rules->addRule(new Rule("Rock", "Lizard", "Crushes"));
-        $rules->addRule(new Rule("Lizard", "Spock", "Poisons"));
-        $rules->addRule(new Rule("Spock", "Scissors", "Smashes"));
-        $rules->addRule(new Rule("Scissors", "Lizard", "Decapitates"));
-        $rules->addRule(new Rule("Lizard", "Paper", "Eats"));
-        $rules->addRule(new Rule("Paper", "Spock", "Disproves"));
-        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
-        $rules->addRule(new Rule("Rock", "Scissors", "Crushes"));
-        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
+        $rules->add(new Rule("Scissors", "Paper", "Cuts"));
+        $rules->add(new Rule("Paper", "Rock", "Covers"));
+        $rules->add(new Rule("Rock", "Lizard", "Crushes"));
+        $rules->add(new Rule("Lizard", "Spock", "Poisons"));
+        $rules->add(new Rule("Spock", "Scissors", "Smashes"));
+        $rules->add(new Rule("Scissors", "Lizard", "Decapitates"));
+        $rules->add(new Rule("Lizard", "Paper", "Eats"));
+        $rules->add(new Rule("Paper", "Spock", "Disproves"));
+        $rules->add(new Rule("Spock", "Rock", "Vaporizes"));
+        $rules->add(new Rule("Rock", "Scissors", "Crushes"));
+        $rules->add(new Rule("Spock", "Rock", "Vaporizes"));
 
         $expected = [
             "Scissors",
@@ -66,8 +66,8 @@ class RulesTest extends \PHPUnit_Framework_TestCase
     public function testAddRule() {
         $ruleToInsert = new Rule("Scissors", "Paper", "Cuts");
 
-        $rules = new Rules();
-        $rules->addRule($ruleToInsert);
+        $rules = new RuleCollection();
+        $rules->add($ruleToInsert);
 
         // Correct casing
         $ruleToObtain = $rules->getRule("Scissors", "Paper");
@@ -91,18 +91,18 @@ class RulesTest extends \PHPUnit_Framework_TestCase
      */
     public function testRulesValidation()
     {
-        $rules = new Rules();
+        $rules = new RuleCollection();
 
-        $rules->addRule(new Rule("Rock", "Scissors", "Crushes"));
-        $rules->addRule(new Rule("Paper", "Rock", "Covers"));
-        $rules->addRule(new Rule("Scissors", "Paper", "Cuts"));
-        $rules->addRule(new Rule("Rock", "Lizard", "Crushes"));
-        $rules->addRule(new Rule("Lizard", "Spock", "Poisons"));
-        $rules->addRule(new Rule("Spock", "Scissors", "Smashes"));
-        $rules->addRule(new Rule("Scissors", "Lizard", "Decapitates"));
-        $rules->addRule(new Rule("Lizard", "Paper", "Eats"));
-        $rules->addRule(new Rule("Paper", "Spock", "Disproves"));
-        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
+        $rules->add(new Rule("Rock", "Scissors", "Crushes"));
+        $rules->add(new Rule("Paper", "Rock", "Covers"));
+        $rules->add(new Rule("Scissors", "Paper", "Cuts"));
+        $rules->add(new Rule("Rock", "Lizard", "Crushes"));
+        $rules->add(new Rule("Lizard", "Spock", "Poisons"));
+        $rules->add(new Rule("Spock", "Scissors", "Smashes"));
+        $rules->add(new Rule("Scissors", "Lizard", "Decapitates"));
+        $rules->add(new Rule("Lizard", "Paper", "Eats"));
+        $rules->add(new Rule("Paper", "Spock", "Disproves"));
+        $rules->add(new Rule("Spock", "Rock", "Vaporizes"));
 
         $validation = $rules->validate();
 

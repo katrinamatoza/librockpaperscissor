@@ -23,14 +23,17 @@
  */
 namespace Balwan\RockPaperScissor\Rules;
 
+use ArrayIterator;
+use IteratorAggregate;
 use Balwan\RockPaperScissor\Rules\Validation\Message;
 use Balwan\RockPaperScissor\Rules\Validation\ValidationResult;
+use Traversable;
 
 /**
  * Class Rules
  * @package Balwan\RockPaperScissor\Rules
  */
-class Rules
+class RuleCollection implements IteratorAggregate
 {
     /**
      * The list of rules that is a part of this game type
@@ -39,9 +42,17 @@ class Rules
     private $rules = [];
 
     /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->rules);
+    }
+
+    /**
      * @param Rule $rule
      */
-    public function addRule(Rule $rule)
+    public function add(Rule $rule)
     {
         $winner = mb_strtolower(trim($rule->getWinner()));
         $loser = mb_strtolower(trim($rule->getLoser()));
@@ -53,6 +64,8 @@ class Rules
      * @param string $winner
      * @param string $loser
      * @return mixed|null
+     *
+     * TODO Implement Null Object Pattern?
      */
     public function getRule(string $winner, string $loser)
     {

@@ -26,7 +26,7 @@ namespace RockPaperScissor\Tests;
 use Balwan\RockPaperScissor\Games\Game;
 use Balwan\RockPaperScissor\Players\Player;
 use Balwan\RockPaperScissor\Rules\Rule;
-use Balwan\RockPaperScissor\Rules\Rules;
+use Balwan\RockPaperScissor\Rules\RuleCollection;
 
 /**
  * Class GameTest.
@@ -183,15 +183,15 @@ class GameTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Generates the rules for the Rock Paper Scissor variation to avoid repeating the rules in the test functions.
-     * @return Rules A Rules object with the rules that will be used in the game.
+     * @return RuleCollection A Rules object with the rules that will be used in the game.
      */
     private function getRockPaperScissorRules()
     {
-        $rules = new Rules();
+        $rules = new RuleCollection();
 
-        $rules->addRule(new Rule("Paper", "Rock", "Covers"));
-        $rules->addRule(new Rule("Scissor", "Paper", "Cuts"));
-        $rules->addRule(new Rule("Rock", "Scissor", "Smashes"));
+        $rules->add(new Rule("Paper", "Rock", "Covers"));
+        $rules->add(new Rule("Scissor", "Paper", "Cuts"));
+        $rules->add(new Rule("Rock", "Scissor", "Smashes"));
 
         return $rules;
     }
@@ -199,22 +199,22 @@ class GameTest extends \PHPUnit_Framework_TestCase
     /**
      * Generates the rules for the Rock Paper Scissor Lizard Spock variation to avoid repeating the rules in the test
      * functions.
-     * @return Rules A Rules object with the rules that will be used in the game.
+     * @return RuleCollection A Rules object with the rules that will be used in the game.
      */
     private function getRockPaperScissorLizardSpockRules()
     {
-        $rules = new Rules();
+        $rules = new RuleCollection();
 
-        $rules->addRule(new Rule("Rock", "Scissors", "Crushes"));
-        $rules->addRule(new Rule("Paper", "Rock", "Covers"));
-        $rules->addRule(new Rule("Scissors", "Paper", "Cuts"));
-        $rules->addRule(new Rule("Rock", "Lizard", "Crushes"));
-        $rules->addRule(new Rule("Lizard", "Spock", "Poisons"));
-        $rules->addRule(new Rule("Spock", "Scissors", "Smashes"));
-        $rules->addRule(new Rule("Scissors", "Lizard", "Decapitates"));
-        $rules->addRule(new Rule("Lizard", "Paper", "Eats"));
-        $rules->addRule(new Rule("Paper", "Spock", "Disproves"));
-        $rules->addRule(new Rule("Spock", "Rock", "Vaporizes"));
+        $rules->add(new Rule("Rock", "Scissors", "Crushes"));
+        $rules->add(new Rule("Paper", "Rock", "Covers"));
+        $rules->add(new Rule("Scissors", "Paper", "Cuts"));
+        $rules->add(new Rule("Rock", "Lizard", "Crushes"));
+        $rules->add(new Rule("Lizard", "Spock", "Poisons"));
+        $rules->add(new Rule("Spock", "Scissors", "Smashes"));
+        $rules->add(new Rule("Scissors", "Lizard", "Decapitates"));
+        $rules->add(new Rule("Lizard", "Paper", "Eats"));
+        $rules->add(new Rule("Paper", "Spock", "Disproves"));
+        $rules->add(new Rule("Spock", "Rock", "Vaporizes"));
 
         return $rules;
     }
