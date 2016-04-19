@@ -46,7 +46,6 @@ abstract class AbstractGameResult
      * Result constructor.
      * @param Player $player1
      * @param Player $player2
-     * @param Rule $rule
      */
     public function __construct(Player $player1, Player $player2)
     {

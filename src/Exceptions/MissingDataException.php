@@ -32,10 +32,10 @@ use Exception;
 class MissingDataException extends Exception
 {
     /**
-     * MissingDataException constructor.
+     * InvalidRuleException constructor.
      * @param string $message The message to display in the Exception
      * @param int $code The exception internal code
-     * @param Exception|null $exception The previous exception that was thrown.
+     * @param Exception|null $previous The previous exception that was thrown.
      */
     public function __construct(string $message = "", int $code = 0, Exception $previous = null)
     {
