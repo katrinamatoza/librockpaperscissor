@@ -87,7 +87,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
         $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Paper Ties Paper");
+
+        $this->assertInstanceOf("\\Balwan\\RockPaperScissor\\Games\\Result\\Tie", $result, "Result is not a Tie instance");
     }
 
     /**

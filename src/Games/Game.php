@@ -23,8 +23,10 @@
  */
 namespace Balwan\RockPaperScissor\Games;
 
+use Balwan\RockPaperScissor\Games\Result\AbstractGameResult;
+use Balwan\RockPaperScissor\Games\Result\Win;
+use Balwan\RockPaperScissor\Games\Result\Tie;
 use Balwan\RockPaperScissor\Players\Player;
-use Balwan\RockPaperScissor\Rules\Rule;
 use Balwan\RockPaperScissor\Rules\RuleCollection;
 
 /**
@@ -69,23 +71,21 @@ class Game
      * The choices made by the players are tested against the rules of the game and a Result is issued that contains 
      * the players that participated and the winning rule.
      * In case of a tie a special rule is created by this method and returned alongside the result.
-     * @return Result The result of this game.
+     * @return AbstractGameResult The result of this game.
      */
-    public function result() : Result
+    public function result() : AbstractGameResult
     {
         $player1Wins = $this->rules->getRule($this->player1->getPlay(), $this->player2->getPlay());
         if(!is_null($player1Wins)) {
-            return new Result($this->player1, $this->player2, $player1Wins);
+            return new Win($this->player1, $this->player2, $player1Wins);
         }
 
         $player2Wins = $this->rules->getRule($this->player2->getPlay(), $this->player1->getPlay());
         if(!is_null($player2Wins)) {
-            return new Result($this->player2, $this->player1, $player2Wins);
+            return new Win($this->player2, $this->player1, $player2Wins);
         }
 
-        // TODO Much better to have a Tie class to signal that the result if a tie along with a result interface.
-        $tie = new Rule($this->player1->getPlay(), $this->player2->getPlay(), "Ties");
-        return new Result($this->player1, $this->player2, $tie);
+        return new Tie($this->player1, $this->player2, "Ties");
     }
 
     /**
