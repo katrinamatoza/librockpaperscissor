@@ -24,6 +24,7 @@
 namespace RockPaperScissor\Tests;
 
 use Balwan\RockPaperScissor\Games\Game;
+use Balwan\RockPaperScissor\Games\Result\Win;
 use Balwan\RockPaperScissor\Players\Player;
 use Balwan\RockPaperScissor\Rules\Rule;
 use Balwan\RockPaperScissor\Rules\RuleCollection;
@@ -47,6 +48,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Rock");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Paper Covers Rock");
     }
@@ -60,6 +63,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Scissor");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Rock Smashes Scissor");
     }
@@ -73,6 +78,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Paper");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Scissor Cuts Paper");
     }
@@ -100,6 +107,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Spock");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Paper Disproves Spock");
     }
@@ -113,6 +122,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Spock");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Spock Smashes Scissors");
     }
@@ -126,6 +137,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Spock");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Lizard Poisons Spock");
     }
@@ -139,6 +152,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Lizard");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Rock Crushes Lizard");
     }
@@ -152,6 +167,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Rock");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Spock Vaporizes Rock");
     }
@@ -165,6 +182,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Paper");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Lizard Eats Paper");
     }
@@ -178,6 +197,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player2 = new Player("Anna B.", "Lizard");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        /** @var Win $result */
         $result = $game->result();
         $this->assertEquals($result->getRule()->getText(), "Scissors Decapitates Lizard");
     }
