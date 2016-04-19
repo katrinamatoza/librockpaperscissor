@@ -86,6 +86,12 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($ruleToObtain, "Rule should be null because it does not exist");
     }
 
+    public function testCannotAddEqualWinnerAndLoser()
+    {
+        $this->expectException("\\Balwan\\RockPaperScissor\\Exceptions\\InvalidRuleException");
+        new Rule("Scissors", "Scissors", "Cuts");
+    }
+
     /**
      *
      */

@@ -23,8 +23,8 @@
  */
 namespace Balwan\RockPaperScissor\Rules;
 
+use Balwan\RockPaperScissor\Exceptions\InvalidRuleException;
 use Balwan\RockPaperScissor\Exceptions\MissingDataException;
-use Exception;
 
 /**
  * Class Rule
@@ -71,6 +71,10 @@ class Rule
 
         if(mb_strlen(trim($outcome)) == 0) {
             throw new MissingDataException("The outcome of the rule cannot be empty.");
+        }
+
+        if(static::cleanup($winner) === static::cleanup($loser)) {
+            throw new InvalidRuleException("You have specified the same weapon for the winner and the loser.");
         }
 
         $this->winner = trim($winner);
