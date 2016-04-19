@@ -133,10 +133,10 @@ class Rule
     }
 
     /**
-     * Obtain a string that tells about this rule as a string in the following format: %winner %outcome %loser
+     * Obtain a string that represents the rule in the following format: "%winner[space]%outcome[space]%loser".
      * @return string A string representation of this rule.
      */
     public function getText() : string {
-        return $this->winner." ".$this->outcome." ".$this->loser;
+        return sprintf("%s %s %s", $this->winner, $this->outcome, $this->loser);
     }
 }
