@@ -24,7 +24,6 @@
 namespace Balwan\RockPaperScissor\Games\Result;
 
 use Balwan\RockPaperScissor\Players\Player;
-use Balwan\RockPaperScissor\Rules\Rule;
 
 /**
  * Interface AbstractGameResult
