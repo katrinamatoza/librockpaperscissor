@@ -46,7 +46,7 @@ class Win extends AbstractGameResult
      */
     public function __construct(Player $player1, Player $player2, Rule $rule)
     {
-        parent::__construct($player1, $player2, $rule);
+        parent::__construct($player1, $player2);
         $this->rule = $rule;
     }
 
