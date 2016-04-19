@@ -48,7 +48,7 @@ class Rule
 
     /**
      * The designation for this outcome.
-     * In a classic Rock Paper Scissor game this could be "beats" or "covers"
+     * In a classic Rock Paper Scissors for the combination Paper vs Rock would be "covers".
      * @var string
      */
     private $outcome = "";
@@ -79,15 +79,35 @@ class Rule
     }
 
     /**
-     * @return string
+     * Cleanup the weapon name. Basically a trim() + mb_strtolower. This is used by the library when a new Rule is
+     * being inserted in the collection. It may be used by you, the developer, if you want to use the collection a
+     * regular array.
+     *
+     * This step is actually optional because you can just as well hash the weapon name as is however it's a fail-safe
+     * in case you wrongfully insert weapon names with different cases or extra spaces in the beginning or end.
+     *
+     * @param string $weapon The name of the weapon being cleaned-up.
+     * @return string A clean weapon name, ready for action!
      */
-    public function __toString() : string
+    public static function cleanup(string $weapon) : string
     {
-        return $this->winner." ".$this->outcome." ".$this->loser;
+        return mb_strtolower(trim($weapon));
     }
 
     /**
-     * @return string
+     * Hash the weapon pair passed in order to insert it in the Rule Collection array.
+     * @param string $winner The weapon that wins the game.
+     * @param string $loser The weapon that loses the game.
+     * @return string An md5 hash of the weapon pair passed as a parameter.
+     */
+    public static function hash(string $winner, string $loser) : string
+    {
+        return md5($winner.$loser);
+    }
+
+    /**
+     * Obtain the winner of this rule.
+     * @return string The winner weapon of this rule e.g. "Paper".
      */
     public function getWinner() : string
     {
@@ -95,7 +115,8 @@ class Rule
     }
 
     /**
-     * @return string
+     * Obtain the loser of this rule.
+     * @return string The loser weapon of this rule e.g. "Rock".
      */
     public function getLoser() : string
     {
@@ -103,14 +124,19 @@ class Rule
     }
 
     /**
-     * @return string
+     * Obtain the outcome of this rule.
+     * @return string The outcome of this rule e.g. "Covers"
      */
     public function getOutcome() : string
     {
         return $this->outcome;
     }
 
+    /**
+     * Obtain a string that tells about this rule as a string in the following format: %winner %outcome %loser
+     * @return string A string representation of this rule.
+     */
     public function getText() : string {
-        return $this->__toString();
+        return $this->winner." ".$this->outcome." ".$this->loser;
     }
 }

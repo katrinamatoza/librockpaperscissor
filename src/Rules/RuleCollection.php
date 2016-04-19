@@ -27,17 +27,16 @@ use ArrayIterator;
 use IteratorAggregate;
 use Balwan\RockPaperScissor\Rules\Validation\Message;
 use Balwan\RockPaperScissor\Rules\Validation\ValidationResult;
-use Traversable;
 
 /**
- * Class Rules
+ * Class RuleCollection
  * @package Balwan\RockPaperScissor\Rules
  */
 class RuleCollection implements IteratorAggregate
 {
     /**
-     * The list of rules that is a part of this game type
-     * @var array
+     * The list of rules that is a part of this game type.
+     * @var Rule[]
      */
     private $rules = [];
 
@@ -50,28 +49,43 @@ class RuleCollection implements IteratorAggregate
     }
 
     /**
+     * Add a rule to the collection. This class implements an Iterator class that allows array-like access to its
+     * contents so you can just add items to the collection.
+     *
+     * If you follow that route make sure you use the hash and cleanup static methods on the winner/loser pair and add
+     * the resulting hash as the array key for that rule. This has to happen because the rules are looked-up using this
+     * hash.
+     *
+     * $key = Rule::hash(Rule::cleanup($winner).Rule::cleanup($loser));
+     * return $rules[$key]
+     *
      * @param Rule $rule
+     *
+     * @see Balwan\RockPaperScissor\Rules\Rule::hash()
+     * @see Balwan\RockPaperScissor\Rules\Rule::cleanup()
      */
     public function add(Rule $rule)
     {
-        $winner = mb_strtolower(trim($rule->getWinner()));
-        $loser = mb_strtolower(trim($rule->getLoser()));
-
-        $this->rules[md5($winner.$loser)] = $rule;
+        $key = Rule::hash(Rule::cleanup($rule->getWinner()), Rule::cleanup($rule->getLoser()));
+        $this->rules[$key] = $rule;
     }
 
     /**
-     * @param string $winner
-     * @param string $loser
-     * @return mixed|null
+     * Lookup a rule based on the $winner and the $loser of the rule. When a rule is added an md5 hash of the winner
+     * and the loser is created and set as the key. This hash is used to lookup the rule in the array.
+     *
+     * @param string $winner The weapon that wins this rule.
+     * @param string $loser The weapon that loses this rule.
+     *
+     * @return Rule|null An instance of Balwan\RockPaperScissor\Rules\Rule or null if the rule is not found
+     *
+     * @see Balwan\RockPaperScissor\Rules\Rule
      *
      * TODO Implement Null Object Pattern?
      */
     public function getRule(string $winner, string $loser)
     {
-        $winner = mb_strtolower(trim($winner));
-        $loser = mb_strtolower(trim($loser));
-        $key = md5($winner.$loser);
+        $key = Rule::hash(Rule::cleanup($winner), Rule::cleanup($loser));
 
         if(!isset($this->rules[$key])) {
             return null;
@@ -85,6 +99,7 @@ class RuleCollection implements IteratorAggregate
      */
     public function getWeapons() : array {
         return array_unique(array_values(array_map(function(Rule $r) { return $r->getWinner(); }, $this->rules)));
+
     }
 
     /**
