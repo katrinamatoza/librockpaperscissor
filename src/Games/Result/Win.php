@@ -27,21 +27,23 @@ use Balwan\RockPaperScissor\Players\Player;
 use Balwan\RockPaperScissor\Rules\Rule;
 
 /**
- * Interface GameResultInterface
- * @package Balwan\RockPaperScissor\Games
+ * Class Win
+ * @package Balwan\RockPaperScissor\Games\Result
  */
 class Win extends AbstractGameResult
 {
 
     /**
+     * The rule that led to the final outcome of the game.
+     * It should be the rule that "won" the game.
      * @var Rule
      */
     private $rule;
 
     /**
      * Win constructor.
-     * @param Player $player1
-     * @param Player $player2
+     * @param Player $player1 A player that participated in a game.
+     * @param Player $player2 The other player that participated in a game.
      * @param Rule $rule
      */
     public function __construct(Player $player1, Player $player2, Rule $rule)
@@ -51,7 +53,8 @@ class Win extends AbstractGameResult
     }
 
     /**
-     * @return Rule
+     * Obtain the rule that "won" a game.
+     * @return Rule The rule.
      */
     public function getRule() : Rule
     {

@@ -33,11 +33,14 @@ use IteratorAggregate;
 class PlayerCollection implements IteratorAggregate
 {
     /**
+     * The list of eligible players that are going to participate in the games.
      * @var array
      */
     private $players = [];
 
     /**
+     * Add a player to the collection. This class implements an Iterator class that allows array-like access to its
+     * contents so you can just add items to the collection.
      * @param Player $player
      */
     public function add(Player $player)

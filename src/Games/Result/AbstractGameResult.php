@@ -26,25 +26,32 @@ namespace Balwan\RockPaperScissor\Games\Result;
 use Balwan\RockPaperScissor\Players\Player;
 
 /**
- * Interface AbstractGameResult
+ * Abstract Class AbstractGameResult
  * @package Balwan\RockPaperScissor\Games\Result
  */
 abstract class AbstractGameResult
 {
     /**
+     * The player that won the game (although it can be whatever you desire).
      * @var Player
      */
     private $player1;
 
     /**
+     * The player that lost the game (although it can be whatever you desire).
      * @var Player
      */
     private $player2;
 
     /**
-     * Result constructor.
-     * @param Player $player1
-     * @param Player $player2
+     * You should not instantiate this class directly unless you are introducing a new type of result. For regular
+     * cases you should use the Win or Tie classes.
+     *
+     * @param Player $player1 A player (e.g. the winner)
+     * @param Player $player2 Another player (e.g. the loser)
+     *
+     * @see Tie
+     * @see Win
      */
     public function __construct(Player $player1, Player $player2)
     {

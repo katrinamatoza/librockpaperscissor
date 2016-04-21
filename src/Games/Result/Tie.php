@@ -26,15 +26,15 @@ namespace Balwan\RockPaperScissor\Games\Result;
 use Balwan\RockPaperScissor\Players\Player;
 
 /**
- * Interface GameResultInterface
- * @package Balwan\RockPaperScissor\Games
+ * Class Tie
+ * @package Balwan\RockPaperScissor\Games\Result
  */
 class Tie extends AbstractGameResult
 {
     /**
-     * Tie constructor
-     * @param Player $player1
-     * @param Player $player2
+     * Instantiates a new result that indicates that the game was a tie.
+     * @param Player $player1 A player that participated in the game (e.g. the winner)-
+     * @param Player $player2 Another player that participated in the game (e.g. the loser).
      */
     public function __construct(Player $player1, Player $player2)
     {

@@ -49,20 +49,8 @@ class RuleCollection implements IteratorAggregate
     }
 
     /**
-     * Add a rule to the collection. This class implements an Iterator class that allows array-like access to its
-     * contents so you can just add items to the collection.
-     *
-     * If you follow that route make sure you use the hash and cleanup static methods on the winner/loser pair and add
-     * the resulting hash as the array key for that rule. This has to happen because the rules are looked-up using this
-     * hash.
-     *
-     * $key = Rule::hash(Rule::cleanup($winner).Rule::cleanup($loser));
-     * return $rules[$key]
-     *
-     * @param Rule $rule
-     *
-     * @see Balwan\RockPaperScissor\Rules\Rule::hash()
-     * @see Balwan\RockPaperScissor\Rules\Rule::cleanup()
+     * Add a rule to the collection. A hash based on the winner/loser of this rule is created for faster look-ups.
+     * @param Rule $rule The rule that we are adding to the collection.
      */
     public function add(Rule $rule)
     {

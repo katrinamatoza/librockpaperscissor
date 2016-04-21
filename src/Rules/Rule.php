@@ -55,11 +55,13 @@ class Rule
 
     /**
      * Rule constructor.
-     * @param string $winner
-     * @param string $loser
-     * @param string $outcome
-     * @throws MissingDataException
-     * @throws InvalidRuleException
+     *
+     * @param string $winner The winner of this rule.
+     * @param string $loser The loser of this rule.
+     * @param string $outcome The outcome of this rule.
+     *
+     * @throws MissingDataException If any of the data is an empty string (after being trimmed).
+     * @throws InvalidRuleException If the winner if the same as the loser after cleanup.
      */
     public function __construct(string $winner, string $loser, string $outcome)
     {

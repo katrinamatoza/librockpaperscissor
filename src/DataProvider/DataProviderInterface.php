@@ -32,9 +32,17 @@ use Balwan\RockPaperScissor\Players\PlayerCollection;
 interface DataProviderInterface
 {
     /**
-     * Query the data provider for data and return all the players that will be participating and what play they did.
+     * Query the data provider for data and return all the players that will be participating in the series of matches
+     * and the play that they performed.
+     *
+     * Ideally, the size of the collection should be an even number so you can pair
+     * the players 1vs1 but the implementation is yours.
+     *
+     * This interface only specified the data source and does and should not handle the games themselves.
+     *
      * @param string $query The query to search for. This should be a #hashtag ideally.
      * @return PlayerCollection The list of players from this provider and what their play was
+     * @see PlayerCollection
      */
     public function get(string $query) : PlayerCollection;
 }
