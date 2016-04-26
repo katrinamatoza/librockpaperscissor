@@ -103,18 +103,22 @@ class RuleCollection implements IteratorAggregate
         $validation->totalRules = count($this->rules);
         $validation->addMessage(new Message(sprintf("%d Rules", $validation->totalRules)));
 
-        if(($validation->totalWeapons * 2) == $validation->totalRules) {
+        // The number of rules should be
+        $validation->expectedTotalRules = (($validation->totalWeapons - 1) / 2) * $validation->totalWeapons;
+        if($validation->expectedTotalRules == $validation->totalRules) {
             $message = new Message(
-                sprintf("Number of weapons (%d) is consistent with the number of rules (%d)",
+                sprintf("Number of weapons (%d) is consistent with the number of rules (%d).",
                 $validation->totalWeapons,
                 $validation->totalRules)
             );
             $validation->addMessage($message);
         } else {
             $message = new Message(
-                sprintf("Number of weapons (%d) is NOT consistent with the number of rules (%d)",
+                sprintf("Number of weapons (%d) is NOT consistent with the number of rules (%d). %d rules expected."
+                    ."according to formula ((totalWeapons - 1) / 2) * totalWeapons)",
                     $validation->totalWeapons,
                     $validation->totalRules,
+                    $validation->expectedTotalRules,
                     Message::FAIL)
             );
             $validation->addMessage($message);

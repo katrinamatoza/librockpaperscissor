@@ -50,6 +50,11 @@ class ValidationResult
     public $rulesAreBalanced = true;
 
     /**
+     * @var int
+     */
+    public $expectedTotalRules = -1;
+
+    /**
      * @var array
      */
     private $messages = [];
