@@ -118,4 +118,25 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $validation->rulesAreBalanced, "The ruleset is not balanced!");
         $this->assertEquals(true, $validation->isValid(), "The validation should not have any FAIL messages!");
     }
+
+    /**
+     *
+     */
+    public function testRuleNameCleanup()
+    {
+        $stringToCleanup = "    CLEAned-Up RUle         ";
+        $cleanedUpString = Rule::cleanup($stringToCleanup);
+        $this->assertEquals("cleaned-up rule", $cleanedUpString, $stringToCleanup." was not cleaned-up correctly");
+    }
+
+    /**
+     * 
+     */
+    public function testRuleHashing()
+    {
+        $winner = "Rock";
+        $loser = "Scissor";
+        $hashed = Rule::hash($winner, $loser);
+        $this->assertEquals("009ad931a6a1867e4a4aa83a52998b58", $hashed, "Rule was not hashed correcly");
+    }
 }
