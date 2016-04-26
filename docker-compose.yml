@@ -3,5 +3,7 @@ services:
   php:
     container_name: rps
     build: .
+    ports:
+      - "22:22"
     volumes:
       - .:/opt
