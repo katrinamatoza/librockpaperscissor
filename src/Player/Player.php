@@ -54,7 +54,7 @@ class Player {
             throw new MissingDataException("The player's name cannot be empty!");
         }
 
-        if(mb_strlen($name) == 0) {
+        if(mb_strlen($play) == 0) {
             throw new MissingDataException("The player's play cannot be empty!");
         }
 

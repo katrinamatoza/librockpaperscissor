@@ -32,10 +32,19 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
     /**
      * Confirm that when instantiating a new player there can be no missing or empty data.
      */
-    public function testPlayerDataCannotBeEmpty()
+    public function testPlayerNameDataCannotBeEmpty()
     {
         $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
-        new Player("", "");
+        new Player("", "Rock");
+    }
+
+    /**
+     * Confirm that when instantiating a new player there can be no missing or empty data.
+     */
+    public function testPlayerPlayDataCannotBeEmpty()
+    {
+        $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        new Player("Ricardo", "");
     }
 
     /**
