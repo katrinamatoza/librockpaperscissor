@@ -26,8 +26,8 @@ namespace RockPaperScissor\Tests;
 use Balwan\RockPaperScissor\Games\Game;
 use Balwan\RockPaperScissor\Games\Result\Win;
 use Balwan\RockPaperScissor\Player\Player;
-use Balwan\RockPaperScissor\Rules\Rule;
-use Balwan\RockPaperScissor\Rules\RuleCollection;
+use Balwan\RockPaperScissor\Rule\Rule;
+use Balwan\RockPaperScissor\Rule\RuleCollection;
 
 /**
  * Class GameTest.
@@ -205,7 +205,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Generates the rules for the Rock Paper Scissor variation to avoid repeating the rules in the test functions.
-     * @return RuleCollection A Rules object with the rules that will be used in the game.
+     * @return RuleCollection A Rule object with the rules that will be used in the game.
      */
     private function getRockPaperScissorRules()
     {
@@ -221,7 +221,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
     /**
      * Generates the rules for the Rock Paper Scissor Lizard Spock variation to avoid repeating the rules in the test
      * functions.
-     * @return RuleCollection A Rules object with the rules that will be used in the game.
+     * @return RuleCollection A Rule object with the rules that will be used in the game.
      */
     private function getRockPaperScissorLizardSpockRules()
     {

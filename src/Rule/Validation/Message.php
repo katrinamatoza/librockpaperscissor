@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rules\Validation;
+namespace Balwan\RockPaperScissor\Rule\Validation;
 
 /**
  * Class Message
- * @package RockPaperScissor\Rules\Validation
+ * @package RockPaperScissor\Rule\Validation
  * @todo Message shouldn't necessarily be in the Validation package as it could be used in other situations.
  */
 class Message

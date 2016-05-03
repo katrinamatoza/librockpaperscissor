@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rules\Validation;
+namespace Balwan\RockPaperScissor\Rule\Validation;
 
 /**
  * Class MessageTest
- * @package Balwan\RockPaperScissor\Rules\Validation
+ * @package Balwan\RockPaperScissor\Rule\Validation
  */
 class MessageTest extends \PHPUnit_Framework_TestCase
 {

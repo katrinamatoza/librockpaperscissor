@@ -21,16 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rules;
+namespace Balwan\RockPaperScissor\Rule;
 
 use ArrayIterator;
 use IteratorAggregate;
-use Balwan\RockPaperScissor\Rules\Validation\Message;
-use Balwan\RockPaperScissor\Rules\Validation\ValidationResult;
+use Balwan\RockPaperScissor\Rule\Validation\Message;
+use Balwan\RockPaperScissor\Rule\Validation\ValidationResult;
 
 /**
  * Class RuleCollection
- * @package Balwan\RockPaperScissor\Rules
+ * @package Balwan\RockPaperScissor\Rule
  */
 class RuleCollection implements IteratorAggregate
 {
@@ -65,7 +65,7 @@ class RuleCollection implements IteratorAggregate
      * @param string $winner The weapon that wins this rule.
      * @param string $loser The weapon that loses this rule.
      *
-     * @return Rule|null An instance of Balwan\RockPaperScissor\Rules\Rule or null if the rule is not found
+     * @return Rule|null An instance of Balwan\RockPaperScissor\Rule\Rule or null if the rule is not found
      *
      * @see Balwan\RockPaperScissor\Rules\Rule
      *
@@ -101,7 +101,7 @@ class RuleCollection implements IteratorAggregate
         $validation->addMessage(new Message(sprintf("%d Weapons", $validation->totalWeapons)));
 
         $validation->totalRules = count($this->rules);
-        $validation->addMessage(new Message(sprintf("%d Rules", $validation->totalRules)));
+        $validation->addMessage(new Message(sprintf("%d Rule", $validation->totalRules)));
 
         // The number of rules should be
         $validation->expectedTotalRules = (($validation->totalWeapons - 1) / 2) * $validation->totalWeapons;

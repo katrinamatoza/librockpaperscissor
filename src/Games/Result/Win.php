@@ -24,7 +24,7 @@
 namespace Balwan\RockPaperScissor\Games\Result;
 
 use Balwan\RockPaperScissor\Player\Player;
-use Balwan\RockPaperScissor\Rules\Rule;
+use Balwan\RockPaperScissor\Rule\Rule;
 
 /**
  * Class Win

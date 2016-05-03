@@ -27,7 +27,7 @@ use Balwan\RockPaperScissor\Games\Result\AbstractGameResult;
 use Balwan\RockPaperScissor\Games\Result\Win;
 use Balwan\RockPaperScissor\Games\Result\Tie;
 use Balwan\RockPaperScissor\Player\Player;
-use Balwan\RockPaperScissor\Rules\RuleCollection;
+use Balwan\RockPaperScissor\Rule\RuleCollection;
 
 /**
  * This class defines a game between two players and the set of rules that is to be applied.
