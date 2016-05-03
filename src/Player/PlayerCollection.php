@@ -23,6 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\Player;
 
+use Countable;
 use ArrayIterator;
 use IteratorAggregate;
 
@@ -30,7 +31,7 @@ use IteratorAggregate;
  * Class PlayerCollection
  * @package Balwan\RockPaperScissor\Player
  */
-class PlayerCollection implements IteratorAggregate
+class PlayerCollection implements IteratorAggregate, Countable
 {
     /**
      * The list of eligible players that are going to participate in the games.
@@ -49,18 +50,18 @@ class PlayerCollection implements IteratorAggregate
     }
 
     /**
-     * @return array
-     */
-    public function getPlayers() : array
-    {
-        return $this->players;
-    }
-
-    /**
      * @inheritDoc
      */
     public function getIterator()
     {
         return new ArrayIterator($this->players);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function count()
+    {
+        return count($this->players);
     }
 }
