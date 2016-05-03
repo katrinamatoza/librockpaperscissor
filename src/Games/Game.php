@@ -26,7 +26,7 @@ namespace Balwan\RockPaperScissor\Games;
 use Balwan\RockPaperScissor\Games\Result\AbstractGameResult;
 use Balwan\RockPaperScissor\Games\Result\Win;
 use Balwan\RockPaperScissor\Games\Result\Tie;
-use Balwan\RockPaperScissor\Players\Player;
+use Balwan\RockPaperScissor\Player\Player;
 use Balwan\RockPaperScissor\Rules\RuleCollection;
 
 /**

@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Players;
+namespace Balwan\RockPaperScissor\Player;
 
 use Balwan\RockPaperScissor\Exception\MissingDataException;
 
 /**
  * This class represents a single player that is participating in a game.
- * @package Balwan\RockPaperScissor\Players
+ * @package Balwan\RockPaperScissor\Player
  */
 class Player {
     /**

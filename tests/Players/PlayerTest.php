@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Players;
+namespace Balwan\RockPaperScissor\Player;
 
 /**
  * Class PlayerTest
- * @package Players
+ * @package Player
  */
 class PlayerTest extends \PHPUnit_Framework_TestCase
 {

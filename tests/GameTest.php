@@ -25,7 +25,7 @@ namespace RockPaperScissor\Tests;
 
 use Balwan\RockPaperScissor\Games\Game;
 use Balwan\RockPaperScissor\Games\Result\Win;
-use Balwan\RockPaperScissor\Players\Player;
+use Balwan\RockPaperScissor\Player\Player;
 use Balwan\RockPaperScissor\Rules\Rule;
 use Balwan\RockPaperScissor\Rules\RuleCollection;
 

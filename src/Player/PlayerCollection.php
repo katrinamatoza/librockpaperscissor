@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Players;
+namespace Balwan\RockPaperScissor\Player;
 
 use ArrayIterator;
 use IteratorAggregate;
 
 /**
  * Class PlayerCollection
- * @package Balwan\RockPaperScissor\Players
+ * @package Balwan\RockPaperScissor\Player
  */
 class PlayerCollection implements IteratorAggregate
 {
