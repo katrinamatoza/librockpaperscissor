@@ -86,10 +86,49 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($ruleToObtain, "Rule should be null because it does not exist");
     }
 
+    /**
+     *
+     */
     public function testCannotAddEqualWinnerAndLoser()
     {
         $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\InvalidRuleException");
         new Rule("Scissors", "Scissors", "Cuts");
+    }
+
+    /**
+     *
+     */
+    public function testGettingTheWinner()
+    {
+        $rule = new Rule("Rock", "Scissor", "Crushes");
+        $this->assertEquals("Rock", $rule->getWinner(), "Winner should be 'Rock'");
+
+        $rule = new Rule("     Rock     ", "Scissor", "Crushes");
+        $this->assertEquals("Rock", $rule->getWinner(), "Winner should be 'Rock'. It's not trimmed.");
+    }
+
+    /**
+     *
+     */
+    public function testGettingTheLoser()
+    {
+        $rule = new Rule("Rock", "Scissor", "Crushes");
+        $this->assertEquals("Scissor", $rule->getLoser(), "Loser should be 'Scissor'");
+
+        $rule = new Rule("Rock", "   Scissor    ", "Crushes");
+        $this->assertEquals("Scissor", $rule->getLoser(), "Loser should be 'Scissor'. It's not trimmed.");
+    }
+
+    /**
+     *
+     */
+    public function testGettingTheOutcome()
+    {
+        $rule = new Rule("Rock", "Scissor", "Crushes");
+        $this->assertEquals("Crushes", $rule->getOutcome(), "Outcome should be 'Crushes'");
+
+        $rule = new Rule("Rock", "   Scissor    ", "Crushes");
+        $this->assertEquals("Crushes", $rule->getOutcome(), "Outcome should be 'Crushes'. It's not trimmed.");
     }
 
     /**
@@ -117,6 +156,33 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $validation->totalWeaponsIsOddNumber, "Total of weapons should be an odd number!");
         $this->assertEquals(true, $validation->rulesAreBalanced, "The ruleset is not balanced!");
         $this->assertEquals(true, $validation->isValid(), "The validation should not have any FAIL messages!");
+    }
+
+    /**
+     *
+     */
+    public function testMissingWinner()
+    {
+        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        new Rule("", "Scissors", "Crushes");
+    }
+
+    /**
+     *
+     */
+    public function testMissingLoser()
+    {
+        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        new Rule("Rock", "", "Crushes");
+    }
+
+    /**
+     *
+     */
+    public function testMissingOutcome()
+    {
+        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        new Rule("Rock", "Scissor", "");
     }
 
     /**

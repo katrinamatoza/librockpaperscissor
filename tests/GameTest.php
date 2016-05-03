@@ -204,6 +204,32 @@ class GameTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     *
+     */
+    public function testGettingPlayers()
+    {
+        $player1 = new Player("Ricardo V.", "Scissors");
+        $player2 = new Player("Anna B.", "Lizard");
+        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+
+        $this->assertEquals($player1, $game->getPlayer1(), "Player1 is invalid or the original changed.");
+        $this->assertEquals($player2, $game->getPlayer2(), "Player2 is invalid or the original changed.");
+    }
+
+    /**
+     *
+     */
+    public function testGettingRules()
+    {
+        $player1 = new Player("Ricardo V.", "Scissors");
+        $player2 = new Player("Anna B.", "Lizard");
+        $rules = $this->getRockPaperScissorLizardSpockRules();
+        $game = new Game($player1, $player2, $rules);
+
+        $this->assertEquals($rules, $game->getRules(), "The object that was passed in the constructor is incorrect.");
+    }
+
+    /**
      * Generates the rules for the Rock Paper Scissor variation to avoid repeating the rules in the test functions.
      * @return RuleCollection A Rule object with the rules that will be used in the game.
      */
