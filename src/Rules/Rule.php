@@ -23,8 +23,8 @@
  */
 namespace Balwan\RockPaperScissor\Rules;
 
-use Balwan\RockPaperScissor\Exceptions\InvalidRuleException;
-use Balwan\RockPaperScissor\Exceptions\MissingDataException;
+use Balwan\RockPaperScissor\Exception\InvalidRuleException;
+use Balwan\RockPaperScissor\Exception\MissingDataException;
 
 /**
  * Class Rule

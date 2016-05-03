@@ -23,7 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\Players;
 
-use Balwan\RockPaperScissor\Exceptions\MissingDataException;
+use Balwan\RockPaperScissor\Exception\MissingDataException;
 
 /**
  * This class represents a single player that is participating in a game.

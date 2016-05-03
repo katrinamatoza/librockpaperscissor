@@ -34,7 +34,7 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPlayerDataCannotBeEmpty()
     {
-        $this->expectException("Balwan\\RockPaperScissor\\Exceptions\\MissingDataException");
+        $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
         new Player("", "");
     }
 

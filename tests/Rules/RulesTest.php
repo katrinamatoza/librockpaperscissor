@@ -88,7 +88,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
 
     public function testCannotAddEqualWinnerAndLoser()
     {
-        $this->expectException("\\Balwan\\RockPaperScissor\\Exceptions\\InvalidRuleException");
+        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\InvalidRuleException");
         new Rule("Scissors", "Scissors", "Cuts");
     }
 

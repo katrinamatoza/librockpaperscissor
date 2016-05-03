@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Exceptions;
+namespace Balwan\RockPaperScissor\Exception;
 
 use Exception;
 
 /**
- * Class NoMatchingRuleException
- * @package Exceptions
+ * Class MissingDataException
+ * @package RockPaperScissor\Interfaces
  */
-class NoMatchingRuleException extends Exception
+class MissingDataException extends Exception
 {
     /**
      * InvalidRuleException constructor.
