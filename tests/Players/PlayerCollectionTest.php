@@ -42,4 +42,26 @@ class PlayerCollectionTest extends \PHPUnit_Framework_TestCase
         $collection->add(new Player("Anna B.", "Scissor"));
         $this->assertEquals(2, count($collection), "There should be 2 players in the collection");
     }
+
+    /**
+     * Test that the Iterator is working correctly.
+     * If the foreach loop does not do anything it means that there is something wrong with the implementation.
+     */
+    public function testLoop()
+    {
+        $collection = new PlayerCollection();
+        $collection->add(new Player("Ricardo V.", "Rock"));
+        $collection->add(new Player("Anna B.", "Scissor"));
+
+        $looped = 0;
+
+        foreach($collection as $c)
+        {
+            if($c) {
+                $looped++;
+            }
+        }
+
+        $this->assertEquals(2, $looped, "There should be 2 players when looping through the collection.");
+    }
 }
