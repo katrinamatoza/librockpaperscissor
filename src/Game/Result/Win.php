@@ -42,13 +42,13 @@ class Win extends AbstractGameResult
 
     /**
      * Win constructor.
-     * @param Player $player1 A player that participated in a game.
-     * @param Player $player2 The other player that participated in a game.
+     * @param Player $winner A player that participated in a game.
+     * @param Player $loser The other player that participated in a game.
      * @param Rule $rule
      */
-    public function __construct(Player $player1, Player $player2, Rule $rule)
+    public function __construct(Player $winner, Player $loser, Rule $rule)
     {
-        parent::__construct($player1, $player2);
+        parent::__construct($winner, $loser);
         $this->rule = $rule;
     }
 
@@ -59,5 +59,23 @@ class Win extends AbstractGameResult
     public function getRule() : Rule
     {
         return $this->rule;
+    }
+
+    /**
+     * Return the winning player.
+     * @return Player
+     */
+    public function getWinner() : Player
+    {
+        return $this->player1;
+    }
+
+    /**
+     * Return the losing player.
+     * @return Player
+     */
+    public function getLoser() : Player
+    {
+        return $this->player2;
     }
 }

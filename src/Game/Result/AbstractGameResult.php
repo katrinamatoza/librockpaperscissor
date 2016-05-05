@@ -35,13 +35,13 @@ abstract class AbstractGameResult
      * The player that won the game (although it can be whatever you desire).
      * @var Player
      */
-    private $player1;
+    protected $player1;
 
     /**
      * The player that lost the game (although it can be whatever you desire).
      * @var Player
      */
-    private $player2;
+    protected $player2;
 
     /**
      * You should not instantiate this class directly unless you are introducing a new type of result. For regular

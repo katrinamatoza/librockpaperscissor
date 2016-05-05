@@ -32,12 +32,31 @@ use Balwan\RockPaperScissor\Player\Player;
 class Tie extends AbstractGameResult
 {
     /**
-     * Instantiates a new result that indicates that the game was a tie.
-     * @param Player $player1 A player that participated in the game (e.g. the winner)-
-     * @param Player $player2 Another player that participated in the game (e.g. the loser).
+     * Instantiates a new result that indicates that the game was a tie. Contrary to the Win class the order of the
+     * players is not important but it's recommended to maintain the original order of the players.
+     * @param Player $player1 A player that participated in the game
+     * @param Player $player2 Another player that participated in the game.
      */
     public function __construct(Player $player1, Player $player2)
     {
         parent::__construct($player1, $player2);
+    }
+
+    /**
+     * Return the winning player.
+     * @return Player
+     */
+    public function getPlayer1() : Player
+    {
+        return $this->player1;
+    }
+
+    /**
+     * Return the losing player.
+     * @return Player
+     */
+    public function getPlayer2() : Player
+    {
+        return $this->player2;
     }
 }
