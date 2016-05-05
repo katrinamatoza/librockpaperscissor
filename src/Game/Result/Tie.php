@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Games\Result;
+namespace Balwan\RockPaperScissor\Game\Result;
 
 use Balwan\RockPaperScissor\Player\Player;
 
 /**
  * Class Tie
- * @package Balwan\RockPaperScissor\Games\Result
+ * @package Balwan\RockPaperScissor\Game\Result
  */
 class Tie extends AbstractGameResult
 {

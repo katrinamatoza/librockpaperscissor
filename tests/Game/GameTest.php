@@ -23,8 +23,8 @@
  */
 namespace RockPaperScissor\Tests;
 
-use Balwan\RockPaperScissor\Games\Game;
-use Balwan\RockPaperScissor\Games\Result\Win;
+use Balwan\RockPaperScissor\Game\Game;
+use Balwan\RockPaperScissor\Game\Result\Win;
 use Balwan\RockPaperScissor\Player\Player;
 use Balwan\RockPaperScissor\Rule\Rule;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
@@ -95,7 +95,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
         $result = $game->result();
 
-        $this->assertInstanceOf("\\Balwan\\RockPaperScissor\\Games\\Result\\Tie", $result, "Result is not a Tie instance");
+        $this->assertInstanceOf("\\Balwan\\RockPaperScissor\\Game\\Result\\Tie", $result, "Result is not a Tie instance");
     }
 
     /**
