@@ -1,12 +1,14 @@
 {
   "name": "balwan/rock-paper-scissor",
+  "type": "library",
   "description": "A PHP library to create games based on Rock Paper Scissor.",
   "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
     {
       "name": "Ricardo Velhote",
-      "email": "rvelhote+github@gmail.com"
+      "email": "rvelhote+github@gmail.com",
+      "role": "Developer"
     }
   ],
   "autoload": {
