@@ -40,7 +40,7 @@ For implementation details you can refer to the testsuite which will show some e
 * 3 Rules
 * Each rule must beat 50% of the other rules and must be beaten by the other 50% of rules (excluding itself). This is why the number of weapons is always an odd number.
 * Each player must choose a weapon to play
-* Finally, you must determine a winner
+* Finally, you must determine a winner, a loser or a tie situation
 
 ```PHP
 // Players of the gaaaaame!
@@ -57,19 +57,24 @@ $ruleCollection->add(new Rule("Rock", "Scissor", "Smashes"));
 $validationResult = $ruleCollection->validate();
 if($validationResult->isValid()) {
     $game = new Game($player1, $player2, $rules);
-    $gameResult = $game->result();
+    $result = $game->result();
 
     // A game result can be either a Win or a Tie. A Win contains the players that participated (and their plays) as well
     // as the winning rule. A Tie just contains the players. You can do whatever you want with the data.
-    if($gameResult instanceof Tie) {
+    if($result instanceof Tie) {
         // FIXME $gameResult should be able to return the players
-        echo $game->getPlayer1()." tied ".$game->getPlayer2();
-    } else {
+        echo $result->getPlayer1()." tied ".$result->getPlayer2();
+    } else if($result instanceof Win) {
         // This should output "Paper Covers Rock"
         echo $game->getRule()->getText();
 
-        // Alternatively
-        echo $game->getRule()->getWinner()." ".$this->getRule()->getOutcome()." ".$this->getRule()->getLoser();
+        // As an alternative
+        echo $result->getWinner(). " played ".$result->getWinner()->getPlay();
+        echo $result->getLoser(). " played ".$result->getLoser()->getPlay();
+        echo $result->getRule()->getWinner()." ".$this->getRule()->getOutcome()." ".$this->getRule()->getLoser();
+        echo $result->getWiner()." Wins!";
+    } else {
+        echo "Oops :P";
     }
 } else {
     // Ooops. Let's see why.
