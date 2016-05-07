@@ -24,6 +24,10 @@
 namespace Balwan\RockPaperScissor\Rule;
 
 use ArrayIterator;
+use Balwan\RockPaperScissor\Rule\Validation\RuleBalancedWeaponOutcome;
+use Balwan\RockPaperScissor\Rule\Validation\RuleExpectedTotalRules;
+use Balwan\RockPaperScissor\Rule\Validation\RuleTotalWeaponsIsOddNumber;
+use Balwan\RockPaperScissor\Rule\Validation\ValidationRuleInterface;
 use IteratorAggregate;
 use Balwan\RockPaperScissor\Rule\Validation\Message;
 use Balwan\RockPaperScissor\Rule\Validation\ValidationResult;
@@ -88,7 +92,6 @@ class RuleCollection implements IteratorAggregate
      */
     public function getWeapons() : array {
         return array_unique(array_values(array_map(function(Rule $r) { return $r->getWinner(); }, $this->rules)));
-
     }
 
     /**
@@ -97,71 +100,25 @@ class RuleCollection implements IteratorAggregate
     public function validate() : ValidationResult {
         $validation = new ValidationResult();
 
-        $validation->totalWeapons = count($this->getWeapons());
-        $validation->addMessage(new Message(sprintf("%d Weapons", $validation->totalWeapons)));
+        $weapons = $this->getWeapons();
+        $totalWeapons = count($weapons);
+        $totalRules = count($this->rules);
 
-        $validation->totalRules = count($this->rules);
-        $validation->addMessage(new Message(sprintf("%d Rule", $validation->totalRules)));
+        $validation->addMessage(new Message(sprintf("%d Weapons", $totalWeapons)));
+        $validation->addMessage(new Message(sprintf("%d Rule", $totalRules)));
 
-        // The number of rules should be
-        $validation->expectedTotalRules = (($validation->totalWeapons - 1) / 2) * $validation->totalWeapons;
-        if($validation->expectedTotalRules == $validation->totalRules) {
-            $message = new Message(
-                sprintf("Number of weapons (%d) is consistent with the number of rules (%d).",
-                $validation->totalWeapons,
-                $validation->totalRules)
-            );
-            $validation->addMessage($message);
-        } else {
-            $message = new Message(
-                sprintf("Number of weapons (%d) is NOT consistent with the number of rules (%d). %d rules expected."
-                    ."according to formula ((totalWeapons - 1) / 2) * totalWeapons)",
-                    $validation->totalWeapons,
-                    $validation->totalRules,
-                    $validation->expectedTotalRules,
-                    Message::FAIL)
-            );
-            $validation->addMessage($message);
-        }
+        $validationRules = [];
+        $validationRules[] = new RuleExpectedTotalRules("Total Rules Expected", $totalWeapons, $totalRules);
+        $validationRules[] = new RuleTotalWeaponsIsOddNumber("Total Weapons is an Odd Number", $totalWeapons);
+        $validationRules[] = new RuleBalancedWeaponOutcome("Weapon Outcomes are Balanced", $this->rules, $weapons);
 
-        $validation->totalWeaponsIsOddNumber = $validation->totalWeapons % 2 !== 0;
-
-        if($validation->totalWeaponsIsOddNumber) {
-            $validation->addMessage(new Message("Total weapons is an odd number"));
-        } else {
-            $validation->addMessage(new Message("Total weapons is NOT an odd number", Message::FAIL));
-        }
-
-        // Verify that each weapon wins and loses the same amount of times.
-        // The final total of each array should be zero. Each win increments and each loss decrements.
-        $weapons = array_flip($this->getWeapons());
-        foreach($weapons as $weapon => $total) {
-            $weapons[$weapon] = 0;
-
-            /** @var Rule $rule */
-            foreach($this->rules as $rule) {
-                if($rule->getWinner() == $weapon) {
-                    $weapons[$weapon]++;
-                }
-
-                if($rule->getLoser() == $weapon) {
-                    $weapons[$weapon]--;
-                }
-            }
-
-            if($validation->rulesAreBalanced && $weapons[$weapon] !== 0) {
-                $validation->rulesAreBalanced = false;
-            }
-
-            if($weapons[$weapon] === 0) {
-                $message = new Message(sprintf("%s is balanced", $weapon), Message::OK);
-                $validation->addMessage($message);
-            } else if($weapons[$weapon] > 0) {
-                $message = new Message(sprintf("%s has %d extra wins", $weapon, $weapons[$weapon]), Message::FAIL);
-                $validation->addMessage($message);
-            } else if($weapons[$weapon] < 0) {
-                $message = new Message(sprintf("%s has %d extra losses", $weapon, $weapons[$weapon]), Message::FAIL);
-                $validation->addMessage($message);
+        /** @var ValidationRuleInterface $validationRule */
+        foreach($validationRules as $validationRule) {
+            $output = $validationRule->run();
+            if(is_array($output)) {
+                $validation->addMessages($output);
+            } else {
+                $validation->addMessage($output);
             }
         }
 
