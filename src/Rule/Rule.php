@@ -87,8 +87,8 @@ class Rule
     }
 
     /**
-     * Cleanup the weapon name. Basically a trim() + mb_strtolower. This is used by the library when a new Rule is
-     * being inserted in the collection. It may be used by you, the developer, if you want to use the collection a
+     * Cleanup the weapon name. Basically a trim() + lowercase conversion. This is used by the library when a new Rule
+     * is being inserted in the collection. It may be used by you, the developer, if you want to use the collection a
      * regular array.
      *
      * This step is actually optional because you can just as well hash the weapon name as is however it's a fail-safe
