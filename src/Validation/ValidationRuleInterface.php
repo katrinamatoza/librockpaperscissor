@@ -30,12 +30,6 @@ namespace Balwan\RockPaperScissor\Validation;
 interface ValidationRuleInterface
 {
     /**
-     * Obtain the name of the validation rule.
-     * @return string The name of the rule.
-     */
-    public function getName() : string;
-
-    /**
      * Run the implementation of the rule. Each rule implementation will return messages. After all rules are ran, if
      * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
      * @return array | ValidationMessage An array of messages (or a single Message) with the appropriate status code.

@@ -33,11 +33,6 @@ use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
 class RuleTotalWeaponsIsOddNumber implements ValidationRuleInterface
 {
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * @var int
      */
     private $totalWeapons;
@@ -47,21 +42,11 @@ class RuleTotalWeaponsIsOddNumber implements ValidationRuleInterface
      * @param string $name
      * @param int $totalWeapons
      */
-    public function __construct(string $name, int $totalWeapons)
+    public function __construct(int $totalWeapons)
     {
-        $this->name = $name;
         $this->totalWeapons = $totalWeapons;
     }
-
-    /**
-     * Obtain the name of the validation rule.
-     * @return string The name of the rule.
-     */
-    public function getName() : string
-    {
-        return $this->name;
-    }
-
+    
     /**
      * Run the implementation of the rule. Each rule implementation will return a message. After all rules are ran, if
      * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.

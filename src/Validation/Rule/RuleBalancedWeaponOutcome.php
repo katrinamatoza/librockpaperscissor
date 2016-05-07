@@ -35,11 +35,6 @@ use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
 class RuleBalancedWeaponOutcome implements ValidationRuleInterface
 {
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * @var array
      */
     private $rules;
@@ -51,24 +46,13 @@ class RuleBalancedWeaponOutcome implements ValidationRuleInterface
 
     /**
      * RuleBalancedWeaponOutcome constructor.
-     * @param string $name
      * @param array|RuleCollection $rules
      * @param array $weapons
      */
-    public function __construct(string $name, array $rules, array $weapons)
+    public function __construct(array $rules, array $weapons)
     {
-        $this->name = $name;
         $this->rules = $rules;
         $this->weapons = $weapons;
-    }
-
-    /**
-     * Obtain the name of the validation rule.
-     * @return string The name of the rule.
-     */
-    public function getName() : string
-    {
-        return $this->name;
     }
 
     /**

@@ -108,9 +108,9 @@ class RuleCollection implements IteratorAggregate
         $validation->addMessage(new ValidationMessage(sprintf("%d Rule", $totalRules)));
 
         $validationRules = [];
-        $validationRules[] = new RuleExpectedTotalRules("Total Rules Expected", $totalWeapons, $totalRules);
-        $validationRules[] = new RuleTotalWeaponsIsOddNumber("Total Weapons is an Odd Number", $totalWeapons);
-        $validationRules[] = new RuleBalancedWeaponOutcome("Weapon Outcomes are Balanced", $this->rules, $weapons);
+        $validationRules[] = new RuleExpectedTotalRules($totalWeapons, $totalRules);
+        $validationRules[] = new RuleTotalWeaponsIsOddNumber($totalWeapons);
+        $validationRules[] = new RuleBalancedWeaponOutcome($this->rules, $weapons);
 
         /** @var ValidationRuleInterface $validationRule */
         foreach($validationRules as $validationRule) {
