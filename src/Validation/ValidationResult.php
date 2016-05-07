@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule\Validation;
+namespace Balwan\RockPaperScissor\Validation;
 
 /**
  * Class ValidationResult
@@ -35,9 +35,9 @@ class ValidationResult
     private $messages = [];
 
     /**
-     * @param Message $message
+     * @param ValidationMessage $message
      */
-    public function addMessage(Message $message) {
+    public function addMessage(ValidationMessage $message) {
         $this->messages[] = $message;
     }
 
@@ -63,8 +63,8 @@ class ValidationResult
      */
     public function isValid() : bool
     {
-        $fn = function(int $carry, Message $m) {
-            if($m->getType() === Message::FAIL) {
+        $fn = function(int $carry, ValidationMessage $m) {
+            if($m->getType() === ValidationMessage::FAIL) {
                 return $carry + 1;
             }
 

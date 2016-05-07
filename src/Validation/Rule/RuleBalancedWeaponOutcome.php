@@ -21,10 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule\Validation;
+namespace Balwan\RockPaperScissor\Validation\Rule;
 
 use Balwan\RockPaperScissor\Rule\Rule;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
+use Balwan\RockPaperScissor\Validation\ValidationMessage;
+use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
 
 /**
  * Class RuleBalancedWeaponOutcome
@@ -72,7 +74,7 @@ class RuleBalancedWeaponOutcome implements ValidationRuleInterface
     /**
      * Run the implementation of the rule. Each rule implementation will return a message. After all rules are ran, if
      * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
-     * @return array | Message An array of messages (or a single Message) with the appropriate status code.
+     * @return array | ValidationMessage An array of messages (or a single Message) with the appropriate status code.
      */
     public function run()
     {
@@ -92,11 +94,11 @@ class RuleBalancedWeaponOutcome implements ValidationRuleInterface
             }
 
             if($weapons[$weapon] > 0) {
-                $message = new Message(sprintf("%s has %d extra wins", $weapon, $weapons[$weapon]), Message::FAIL);
+                $message = new ValidationMessage(sprintf("%s has %d extra wins", $weapon, $weapons[$weapon]), ValidationMessage::FAIL);
             } else if($weapons[$weapon] < 0) {
-                $message = new Message(sprintf("%s has %d extra losses", $weapon, $weapons[$weapon]), Message::FAIL);
+                $message = new ValidationMessage(sprintf("%s has %d extra losses", $weapon, $weapons[$weapon]), ValidationMessage::FAIL);
             } else {
-                $message = new Message(sprintf("%s is balanced", $weapon), Message::OK);
+                $message = new ValidationMessage(sprintf("%s is balanced", $weapon), ValidationMessage::OK);
             }
 
             $messages[] = $message;

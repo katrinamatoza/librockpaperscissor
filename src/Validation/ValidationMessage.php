@@ -21,14 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule\Validation;
+namespace Balwan\RockPaperScissor\Validation;
 
 /**
  * Class Message
  * @package RockPaperScissor\Rule\Validation
- * @todo Message shouldn't necessarily be in the Validation package as it could be used in other situations.
  */
-class Message
+class ValidationMessage
 {
     /**
      * Message type that represents and error or some sort of serious problem.
@@ -67,7 +66,7 @@ class Message
      * @param string $message The text of the message that will be displayed or logged.
      * @param int $type The type of message.
      */
-    public function __construct(string $message, int $type = Message::INFO)
+    public function __construct(string $message, int $type = ValidationMessage::INFO)
     {
         $this->message = $message;
         $this->type = $type;

@@ -21,7 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule\Validation;
+namespace Balwan\RockPaperScissor\Validation\Rule;
+
+use Balwan\RockPaperScissor\Validation\ValidationMessage;
+use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
 
 /**
  * Class RuleExpectedTotalRules
@@ -69,7 +72,7 @@ class RuleExpectedTotalRules implements ValidationRuleInterface
     /**
      * Run the implementation of the rule. Each rule implementation will return a message. After all rules are ran, if
      * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
-     * @return array | Message An array of messages (or a single Message) with the appropriate status code.
+     * @return array | ValidationMessage An array of messages (or a single Message) with the appropriate status code.
      */
     public function run()
     {
@@ -77,11 +80,11 @@ class RuleExpectedTotalRules implements ValidationRuleInterface
 
         if($expected == $this->totalRules) {
             $tpl = "Number of weapons (%d) is consistent with the number of rules (%d).";
-            return new Message(sprintf($tpl, $this->totalWeapons, $this->totalRules), Message::OK);
+            return new ValidationMessage(sprintf($tpl, $this->totalWeapons, $this->totalRules), ValidationMessage::OK);
         }
 
         $tpl = "Number of weapons (%d) is NOT consistent with the number of rules (%d). %d rules expected "
             ."according to formula ((totalWeapons - 1) / 2) * totalWeapons)";
-        return new Message(sprintf($tpl, $this->totalWeapons, $this->totalRules, $expected), Message::FAIL);
+        return new ValidationMessage(sprintf($tpl, $this->totalWeapons, $this->totalRules, $expected), ValidationMessage::FAIL);
     }
 }

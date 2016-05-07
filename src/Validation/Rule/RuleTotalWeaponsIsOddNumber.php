@@ -21,7 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule\Validation;
+namespace Balwan\RockPaperScissor\Validation\Rule;
+
+use Balwan\RockPaperScissor\Validation\ValidationMessage;
+use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
 
 /**
  * Class RuleTotalWeaponsIsOddNumber
@@ -62,13 +65,13 @@ class RuleTotalWeaponsIsOddNumber implements ValidationRuleInterface
     /**
      * Run the implementation of the rule. Each rule implementation will return a message. After all rules are ran, if
      * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
-     * @return array | Message An array of messages (or a single Message) with the appropriate status code.
+     * @return array | ValidationMessage An array of messages (or a single Message) with the appropriate status code.
      */
     public function run()
     {
         if($this->totalWeapons % 2 !== 0) {
-            return new Message("Total weapons is an odd number.", Message::OK);
+            return new ValidationMessage("Total weapons is an odd number.", ValidationMessage::OK);
         }
-        return new Message("Total weapons is NOT an odd number.", Message::FAIL);
+        return new ValidationMessage("Total weapons is NOT an odd number.", ValidationMessage::FAIL);
     }
 }

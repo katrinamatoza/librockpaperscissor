@@ -21,24 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule\Validation;
+namespace Balwan\RockPaperScissor\Validation;
 
 /**
- * Interface ValidationRule
+ * Class MessageTest
  * @package Balwan\RockPaperScissor\Rule\Validation
  */
-interface ValidationRuleInterface
+class ValidationMessageTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Obtain the name of the validation rule.
-     * @return string The name of the rule.
+     * Test the creation of a message with only the mandatory parameters set.
+     * The message type should be INFO
      */
-    public function getName() : string;
+    public function testValidationMessage()
+    {
+        $message = new ValidationMessage("Test Message");
+        $this->assertEquals("Test Message", $message->getMessage(), "The message returned by getMessage is incorrect!");
+        $this->assertEquals(ValidationMessage::INFO, $message->getType(), "Message should be of type INFO");
+    }
 
     /**
-     * Run the implementation of the rule. Each rule implementation will return messages. After all rules are ran, if
-     * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
-     * @return array | Message An array of messages (or a single Message) with the appropriate status code.
+     * Test the creation of a message with all parameters.
+     * The message type should be OK.
      */
-    public function run();
+    public function testMessageType()
+    {
+        $message = new ValidationMessage("Test Message", ValidationMessage::OK);
+        $this->assertEquals(ValidationMessage::OK, $message->getType(), "Message should be of type OK");
+    }
 }

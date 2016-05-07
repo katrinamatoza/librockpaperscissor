@@ -24,13 +24,13 @@
 namespace Balwan\RockPaperScissor\Rule;
 
 use ArrayIterator;
-use Balwan\RockPaperScissor\Rule\Validation\RuleBalancedWeaponOutcome;
-use Balwan\RockPaperScissor\Rule\Validation\RuleExpectedTotalRules;
-use Balwan\RockPaperScissor\Rule\Validation\RuleTotalWeaponsIsOddNumber;
-use Balwan\RockPaperScissor\Rule\Validation\ValidationRuleInterface;
 use IteratorAggregate;
-use Balwan\RockPaperScissor\Rule\Validation\Message;
-use Balwan\RockPaperScissor\Rule\Validation\ValidationResult;
+use Balwan\RockPaperScissor\Validation\ValidationMessage;
+use Balwan\RockPaperScissor\Validation\ValidationResult;
+use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
+use Balwan\RockPaperScissor\Validation\Rule\RuleBalancedWeaponOutcome;
+use Balwan\RockPaperScissor\Validation\Rule\RuleTotalWeaponsIsOddNumber;
+use Balwan\RockPaperScissor\Validation\Rule\RuleExpectedTotalRules;
 
 /**
  * Class RuleCollection
@@ -104,8 +104,8 @@ class RuleCollection implements IteratorAggregate
         $totalWeapons = count($weapons);
         $totalRules = count($this->rules);
 
-        $validation->addMessage(new Message(sprintf("%d Weapons", $totalWeapons)));
-        $validation->addMessage(new Message(sprintf("%d Rule", $totalRules)));
+        $validation->addMessage(new ValidationMessage(sprintf("%d Weapons", $totalWeapons)));
+        $validation->addMessage(new ValidationMessage(sprintf("%d Rule", $totalRules)));
 
         $validationRules = [];
         $validationRules[] = new RuleExpectedTotalRules("Total Rules Expected", $totalWeapons, $totalRules);
