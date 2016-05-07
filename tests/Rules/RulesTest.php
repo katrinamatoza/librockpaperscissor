@@ -150,12 +150,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $rules->add(new Rule("Spock", "Rock", "Vaporizes"));
 
         $validation = $rules->validate();
-
-        $this->assertEquals(5, $validation->totalWeapons, "There should only be 5 (unique) weapons in this game!");
-        $this->assertEquals($validation->expectedTotalRules, $validation->totalRules, "There should be 10 rules!");
-        $this->assertEquals(true, $validation->totalWeaponsIsOddNumber, "Total of weapons should be an odd number!");
-        $this->assertEquals(true, $validation->rulesAreBalanced, "The ruleset is not balanced!");
-        $this->assertEquals(true, $validation->isValid(), "The validation should not have any FAIL messages!");
+        $this->assertTrue($validation->isValid(), "This validation should not have any FAIL messages.");
     }
 
     /**
