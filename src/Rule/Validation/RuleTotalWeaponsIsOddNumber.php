@@ -24,53 +24,51 @@
 namespace Balwan\RockPaperScissor\Rule\Validation;
 
 /**
- * Class ValidationResult
+ * Class RuleTotalWeaponsIsOddNumber
  * @package Balwan\RockPaperScissor\Rule\Validation
  */
-class ValidationResult
+class RuleTotalWeaponsIsOddNumber implements ValidationRuleInterface
 {
     /**
-     * @var array
+     * @var string
      */
-    private $messages = [];
+    private $name;
 
     /**
-     * @param Message $message
+     * @var int
      */
-    public function addMessage(Message $message) {
-        $this->messages[] = $message;
+    private $totalWeapons;
+
+    /**
+     * RuleTotalWeaponsIsOddNumber constructor.
+     * @param string $name
+     * @param int $totalWeapons
+     */
+    public function __construct(string $name, int $totalWeapons)
+    {
+        $this->name = $name;
+        $this->totalWeapons = $totalWeapons;
     }
 
     /**
-     * @param array $messages
+     * Obtain the name of the validation rule.
+     * @return string The name of the rule.
      */
-    public function addMessages(array $messages)
+    public function getName() : string
     {
-        $this->messages = array_merge($this->messages, $messages);
+        return $this->name;
     }
 
     /**
-     * @return array
+     * Run the implementation of the rule. Each rule implementation will return a message. After all rules are ran, if
+     * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
+     * @return array | Message An array of messages (or a single Message) with the appropriate status code.
      */
-    public function getMessages() : array
+    public function run()
     {
-        return $this->messages;
-    }
-
-    /**
-     *
-     * @return bool
-     */
-    public function isValid() : bool
-    {
-        $fn = function(int $carry, Message $m) {
-            if($m->getType() === Message::FAIL) {
-                return $carry + 1;
-            }
-
-            return $carry;
-        };
-
-        return array_reduce($this->messages, $fn, 0) === 0;
+        if($this->totalWeapons % 2 !== 0) {
+            return new Message("Total weapons is an odd number.", Message::OK);
+        }
+        return new Message("Total weapons is NOT an odd number.", Message::FAIL);
     }
 }

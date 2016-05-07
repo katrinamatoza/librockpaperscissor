@@ -24,53 +24,21 @@
 namespace Balwan\RockPaperScissor\Rule\Validation;
 
 /**
- * Class ValidationResult
+ * Interface ValidationRule
  * @package Balwan\RockPaperScissor\Rule\Validation
  */
-class ValidationResult
+interface ValidationRuleInterface
 {
     /**
-     * @var array
+     * Obtain the name of the validation rule.
+     * @return string The name of the rule.
      */
-    private $messages = [];
+    public function getName() : string;
 
     /**
-     * @param Message $message
+     * Run the implementation of the rule. Each rule implementation will return messages. After all rules are ran, if
+     * any of them is a FAIL message the validation of the game ruleset (given by the RuleCollection) will have failed.
+     * @return array | Message An array of messages (or a single Message) with the appropriate status code.
      */
-    public function addMessage(Message $message) {
-        $this->messages[] = $message;
-    }
-
-    /**
-     * @param array $messages
-     */
-    public function addMessages(array $messages)
-    {
-        $this->messages = array_merge($this->messages, $messages);
-    }
-
-    /**
-     * @return array
-     */
-    public function getMessages() : array
-    {
-        return $this->messages;
-    }
-
-    /**
-     *
-     * @return bool
-     */
-    public function isValid() : bool
-    {
-        $fn = function(int $carry, Message $m) {
-            if($m->getType() === Message::FAIL) {
-                return $carry + 1;
-            }
-
-            return $carry;
-        };
-
-        return array_reduce($this->messages, $fn, 0) === 0;
-    }
+    public function run();
 }
