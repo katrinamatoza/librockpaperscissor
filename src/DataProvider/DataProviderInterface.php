@@ -23,7 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\DataProvider;
 
-use Balwan\RockPaperScissor\Players\PlayerCollection;
+use Balwan\RockPaperScissor\Player\PlayerCollection;
 
 /**
  * Interface DataProviderInterface
