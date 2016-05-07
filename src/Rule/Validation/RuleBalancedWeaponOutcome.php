@@ -23,6 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\Rule\Validation;
 
+use Balwan\RockPaperScissor\Rule\Rule;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
 
 /**
@@ -90,12 +91,12 @@ class RuleBalancedWeaponOutcome implements ValidationRuleInterface
                 }
             }
 
-            if($weapons[$weapon] === 0) {
-                $message = new Message(sprintf("%s is balanced", $weapon), Message::OK);
-            } else if($weapons[$weapon] > 0) {
+            if($weapons[$weapon] > 0) {
                 $message = new Message(sprintf("%s has %d extra wins", $weapon, $weapons[$weapon]), Message::FAIL);
             } else if($weapons[$weapon] < 0) {
                 $message = new Message(sprintf("%s has %d extra losses", $weapon, $weapons[$weapon]), Message::FAIL);
+            } else {
+                $message = new Message(sprintf("%s is balanced", $weapon), Message::OK);
             }
 
             $messages[] = $message;
