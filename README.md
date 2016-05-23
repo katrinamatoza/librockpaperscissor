@@ -15,6 +15,8 @@ docker build -t librps .
 docker run -ti [-p 22] -v YOUR_PATH:CONTAINER_PATH librps
 ```
 
+And then, when you are inside the container, you have to start the ssh daemon so you can use the remote development tools.
+
 ## Developing
 
 The first step of course is to clone the repo. Then you should update the composer libraries and then run the testsuite.
@@ -44,17 +46,17 @@ For implementation details you can refer to the testsuite which will show some e
 
 ```PHP
 // Players of the gaaaaame!
-$player1 = new Player("Ricardo V.", "Paper");
-$player2 = new Player("Anna B.", "Rock");
+$player1 = new Player("Ricardo V.", "Rock");
+$player2 = new Player("Anna B.", "Paper");
 
-// The rule set
-$ruleCollection = new RuleCollection();
-$ruleCollection->add(new Rule("Paper", "Rock", "Covers"));
-$ruleCollection->add(new Rule("Scissor", "Paper", "Cuts"));
-$ruleCollection->add(new Rule("Rock", "Scissor", "Smashes"));
+// The ruleset for a regular Rock Paper Scissor game.
+$rules = new RuleCollection();
+$rules->add(new Rule("Paper", "Rock", "Covers"));
+$rules->add(new Rule("Scissor", "Paper", "Cuts"));
+$rules->add(new Rule("Rock", "Scissor", "Smashes"));
 
 // You should validate it first to make sure it's all good
-$validationResult = $ruleCollection->validate();
+$validationResult = $rules->validate();
 if($validationResult->isValid()) {
     $game = new Game($player1, $player2, $rules);
     $result = $game->result();
@@ -62,23 +64,31 @@ if($validationResult->isValid()) {
     // A game result can be either a Win or a Tie. A Win contains the players that participated (and their plays) as well
     // as the winning rule. A Tie just contains the players. You can do whatever you want with the data.
     if($result instanceof Tie) {
-        // FIXME $gameResult should be able to return the players
-        echo $result->getPlayer1()." tied ".$result->getPlayer2();
+        /** @var Balwan\RockPaperScissor\Game\Result\Tie $result */
+        print "\n» ".$result->getPlayer1()->getName()." tied ".$result->getPlayer2()->getName()."\n";
+        print "» ".$result->getPlayer1()->getName(). " played ".$result->getPlayer1()->getPlay()."\n";
+        print "» ".$result->getPlayer2()->getName(). " played ".$result->getPlayer2()->getPlay()."\n";
     } else if($result instanceof Win) {
-        // This should output "Paper Covers Rock"
-        echo $game->getRule()->getText();
+        /** @var Balwan\RockPaperScissor\Game\Result\Win $result */
+        print "\n» ".$result->getRule()->getText()."\n================\n";
 
-        // As an alternative
-        echo $result->getWinner(). " played ".$result->getWinner()->getPlay();
-        echo $result->getLoser(). " played ".$result->getLoser()->getPlay();
-        echo $result->getRule()->getWinner()." ".$this->getRule()->getOutcome()." ".$this->getRule()->getLoser();
-        echo $result->getWiner()." Wins!";
+        // Detailed
+        print "» ".$result->getWinner()->getName(). " played ".$result->getWinner()->getPlay()."\n";
+        print "» ".$result->getLoser()->getName(). " played ".$result->getLoser()->getPlay()."\n";
+        print "» ".$result->getRule()->getWinner()." ".$result->getRule()->getOutcome()." ".$result->getRule()->getLoser()."\n";
+        print "» ".$result->getWinner()->getName()." Win(s)!\n\n";
     } else {
         echo "Oops :P";
     }
 } else {
-    // Ooops. Let's see why.
-    var_dump($validationResult->getMessages());
+    $reflection = new ReflectionClass("\\Balwan\\RockPaperScissor\\Validation\\ValidationMessage");
+    $constants = $reflection->getConstants();
+
+    /** @var \Balwan\RockPaperScissor\Validation\ValidationMessage $message */
+    foreach($validationResult->getMessages() as $message) {
+        $constant = array_search($message->getType(), $constants);
+        print "» ".$constant." » ".$message->getMessage()."\n";
+    }
 }
 ```
 
