@@ -89,13 +89,36 @@ class GameTest extends \PHPUnit_Framework_TestCase
      */
     public function testTie()
     {
+        $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Tie";
+
         $player1 = new Player("Ricardo V.", "Paper");
         $player2 = new Player("Anna B.", "Paper");
 
         $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
         $result = $game->result();
 
-        $this->assertInstanceOf("\\Balwan\\RockPaperScissor\\Game\\Result\\Tie", $result, "Result is not a Tie instance");
+        $this->assertInstanceOf($className, $result, "Result is not a Tie instance");
+    }
+
+    /**
+     * Confirm the the result of a game is a Win and that the player objects that are in the Win instance are the
+     * correct ones.
+     */
+    public function testWin()
+    {
+        $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Win";
+
+        $player1 = new Player("Ricardo V.", "Paper");
+        $player2 = new Player("Anna B.", "Rock");
+
+        $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
+
+        /** @var Win $result */
+        $result = $game->result();
+
+        $this->assertInstanceOf($className, $result, "Result is not a Win instance");
+        $this->assertEquals($player1, $result->getWinner(), "The winner is incorrect in this game result.");
+        $this->assertEquals($player2, $result->getLoser(), "The loser is incorrect in this game result.");
     }
 
     /**
