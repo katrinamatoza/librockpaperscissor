@@ -28,6 +28,7 @@ use Balwan\RockPaperScissor\Rule\RuleCollection;
 /**
  * Class ValidationResultTest
  * @package Rules\Validation
+ * @todo Improve testing of the validation class to include tests to make specific rules fail and pass.
  */
 class ValidationResultTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,9 +49,10 @@ class ValidationResultTest extends \PHPUnit_Framework_TestCase
     public function testValidationResultFails()
     {
         $rules = new RuleCollection();
-        $rules->add(new Rule("Paper", "Spock", "Covers"));
+        $rules->add(new Rule("Paper", "Rock", "Covers"));
         $rules->add(new Rule("Scissor", "Paper", "Cuts"));
-        $rules->add(new Rule("Rock", "Scissor", "Smashes"));
+        $rules->add(new Rule("Rock", "Paper", "Smashes"));
+        $rules->add(new Rule("Spock", "Lizard", "Spits"));
 
         $validationResult = $rules->validate();
         $this->assertFalse($validationResult->isValid(), "The ruleset should not be valid");
