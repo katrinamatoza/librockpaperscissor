@@ -24,10 +24,11 @@
 namespace RockPaperScissor\Tests;
 
 use Balwan\RockPaperScissor\Game\Game;
+use Balwan\RockPaperScissor\Game\Result\Tie;
 use Balwan\RockPaperScissor\Game\Result\Win;
 use Balwan\RockPaperScissor\Player\Player;
-use Balwan\RockPaperScissor\Rule\Rule;
-use Balwan\RockPaperScissor\Rule\RuleCollection;
+use RockPaperScissor\Tests\Game\RockPaperScissorGameTest;
+use RockPaperScissor\Tests\Game\RockPaperScissorLizardSpockGameTest;
 
 /**
  * Class GameTest.
@@ -39,50 +40,7 @@ use Balwan\RockPaperScissor\Rule\RuleCollection;
  */
 class GameTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * Paper Covers Rock
-     */
-    public function testPaperBeatsRock()
-    {
-        $player1 = new Player("Ricardo V.", "Paper");
-        $player2 = new Player("Anna B.", "Rock");
 
-        $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Paper Covers Rock");
-    }
-
-    /**
-     * Rock Smashes Scissor
-     */
-    public function testRockSmashesScissor()
-    {
-        $player1 = new Player("Ricardo V.", "Rock");
-        $player2 = new Player("Anna B.", "Scissor");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Rock Smashes Scissor");
-    }
-
-    /**
-     *
-     */
-    public function testPaperScissorBeatsPaper()
-    {
-        $player1 = new Player("Ricardo V.", "Scissor");
-        $player2 = new Player("Anna B.", "Paper");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Scissor Cuts Paper");
-    }
 
     /**
      *
@@ -94,10 +52,14 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player1 = new Player("Ricardo V.", "Paper");
         $player2 = new Player("Anna B.", "Paper");
 
-        $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
+        $game = new Game($player1, $player2, RockPaperScissorGameTest::getRockPaperScissorRules());
+
+        /** @var Tie $result */
         $result = $game->result();
 
         $this->assertInstanceOf($className, $result, "Result is not a Tie instance");
+        $this->assertEquals($player1, $result->getPlayer1(), "Player 1 in the Tie instance is the original object");
+        $this->assertEquals($player2, $result->getPlayer2(), "Player 1 in the Tie instance is the original object");
     }
 
     /**
@@ -111,7 +73,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $player1 = new Player("Ricardo V.", "Paper");
         $player2 = new Player("Anna B.", "Rock");
 
-        $game = new Game($player1, $player2, $this->getRockPaperScissorRules());
+        $game = new Game($player1, $player2, RockPaperScissorGameTest::getRockPaperScissorRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -121,110 +83,6 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($player2, $result->getLoser(), "The loser is incorrect in this game result.");
     }
 
-    /**
-     *
-     */
-    public function testPaperDisprovesSpock()
-    {
-        $player1 = new Player("Ricardo V.", "Paper");
-        $player2 = new Player("Anna B.", "Spock");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Paper Disproves Spock");
-    }
-
-    /**
-     *
-     */
-    public function testSpockSmashesScissors()
-    {
-        $player1 = new Player("Ricardo V.", "Scissors");
-        $player2 = new Player("Anna B.", "Spock");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Spock Smashes Scissors");
-    }
-
-    /**
-     *
-     */
-    public function testLizardPoisonsSpock()
-    {
-        $player1 = new Player("Ricardo V.", "Lizard");
-        $player2 = new Player("Anna B.", "Spock");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Lizard Poisons Spock");
-    }
-
-    /**
-     *
-     */
-    public function testRockCrushesLizard()
-    {
-        $player1 = new Player("Ricardo V.", "Rock");
-        $player2 = new Player("Anna B.", "Lizard");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Rock Crushes Lizard");
-    }
-
-    /**
-     *
-     */
-    public function testSpockVaporizesRock()
-    {
-        $player1 = new Player("Ricardo V.", "Spock");
-        $player2 = new Player("Anna B.", "Rock");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Spock Vaporizes Rock");
-    }
-
-    /**
-     *
-     */
-    public function testLizardEatsPaper()
-    {
-        $player1 = new Player("Ricardo V.", "Lizard");
-        $player2 = new Player("Anna B.", "Paper");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Lizard Eats Paper");
-    }
-
-    /**
-     *
-     */
-    public function testScissorDecapitatesLizard()
-    {
-        $player1 = new Player("Ricardo V.", "Scissors");
-        $player2 = new Player("Anna B.", "Lizard");
-
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
-
-        /** @var Win $result */
-        $result = $game->result();
-        $this->assertEquals($result->getRule()->getText(), "Scissors Decapitates Lizard");
-    }
 
     /**
      *
@@ -233,7 +91,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
     {
         $player1 = new Player("Ricardo V.", "Scissors");
         $player2 = new Player("Anna B.", "Lizard");
-        $game = new Game($player1, $player2, $this->getRockPaperScissorLizardSpockRules());
+        $game = new Game($player1, $player2, RockPaperScissorLizardSpockGameTest::getRockPaperScissorLizardSpockRules());
 
         $this->assertEquals($player1, $game->getPlayer1(), "Player1 is invalid or the original changed.");
         $this->assertEquals($player2, $game->getPlayer2(), "Player2 is invalid or the original changed.");
@@ -246,47 +104,9 @@ class GameTest extends \PHPUnit_Framework_TestCase
     {
         $player1 = new Player("Ricardo V.", "Scissors");
         $player2 = new Player("Anna B.", "Lizard");
-        $rules = $this->getRockPaperScissorLizardSpockRules();
+        $rules = RockPaperScissorLizardSpockGameTest::getRockPaperScissorLizardSpockRules();
         $game = new Game($player1, $player2, $rules);
 
         $this->assertEquals($rules, $game->getRules(), "The object that was passed in the constructor is incorrect.");
-    }
-
-    /**
-     * Generates the rules for the Rock Paper Scissor variation to avoid repeating the rules in the test functions.
-     * @return RuleCollection A Rule object with the rules that will be used in the game.
-     */
-    private function getRockPaperScissorRules()
-    {
-        $rules = new RuleCollection();
-
-        $rules->add(new Rule("Paper", "Rock", "Covers"));
-        $rules->add(new Rule("Scissor", "Paper", "Cuts"));
-        $rules->add(new Rule("Rock", "Scissor", "Smashes"));
-
-        return $rules;
-    }
-
-    /**
-     * Generates the rules for the Rock Paper Scissor Lizard Spock variation to avoid repeating the rules in the test
-     * functions.
-     * @return RuleCollection A Rule object with the rules that will be used in the game.
-     */
-    private function getRockPaperScissorLizardSpockRules()
-    {
-        $rules = new RuleCollection();
-
-        $rules->add(new Rule("Rock", "Scissors", "Crushes"));
-        $rules->add(new Rule("Paper", "Rock", "Covers"));
-        $rules->add(new Rule("Scissors", "Paper", "Cuts"));
-        $rules->add(new Rule("Rock", "Lizard", "Crushes"));
-        $rules->add(new Rule("Lizard", "Spock", "Poisons"));
-        $rules->add(new Rule("Spock", "Scissors", "Smashes"));
-        $rules->add(new Rule("Scissors", "Lizard", "Decapitates"));
-        $rules->add(new Rule("Lizard", "Paper", "Eats"));
-        $rules->add(new Rule("Paper", "Spock", "Disproves"));
-        $rules->add(new Rule("Spock", "Rock", "Vaporizes"));
-
-        return $rules;
     }
 }
