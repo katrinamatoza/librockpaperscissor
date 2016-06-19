@@ -30,19 +30,23 @@ namespace Balwan\RockPaperScissor\Validation;
 class ValidationResult
 {
     /**
+     * The list of messages that will be available after the validation if ran.
      * @var array
      */
     private $messages = [];
 
     /**
-     * @param ValidationMessage $message
+     * Adds a new validation message to the list
+     * @param ValidationMessage $message A validation message to add to the list
      */
     public function addMessage(ValidationMessage $message) {
         $this->messages[] = $message;
     }
 
     /**
-     * @param array $messages
+     * Adds multiples messages to the list of messages
+     * @param array $messages The set of messages to add to the list
+     * @see ValidationMessage
      */
     public function addMessages(array $messages)
     {
@@ -50,7 +54,8 @@ class ValidationResult
     }
 
     /**
-     * @return array
+     * Obtain the list of messages currently in this object
+     * @return array A list of messages
      */
     public function getMessages() : array
     {
@@ -58,19 +63,19 @@ class ValidationResult
     }
 
     /**
-     *
-     * @return bool
+     * Checks if there are not FAIL messages in this list of messages.
+     * @return bool true|false depending if there are/aren't messages with ValidationMessage::FAIL status.
+     * @todo Why am I using array_reduce? Looks cool maybe...
      */
     public function isValid() : bool
     {
-        $fn = function(int $carry, ValidationMessage $m) {
-            if($m->getType() === ValidationMessage::FAIL) {
+        $function = function(int $carry, ValidationMessage $message) {
+            if($message->getType() === ValidationMessage::FAIL) {
                 return $carry + 1;
             }
 
             return $carry;
         };
-
-        return array_reduce($this->messages, $fn, 0) === 0;
+        return array_reduce($this->messages, $function, 0) === 0;
     }
 }

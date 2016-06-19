@@ -91,7 +91,7 @@ class RuleCollection implements IteratorAggregate
      * @return array An array of strings with all the weapons in the collection.
      */
     public function getWeapons() : array {
-        return array_unique(array_values(array_map(function(Rule $r) { return $r->getWinner(); }, $this->rules)));
+        return array_unique(array_values(array_map(function(Rule $rule) { return $rule->getWinner(); }, $this->rules)));
     }
 
     /**
