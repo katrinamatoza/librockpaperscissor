@@ -39,8 +39,7 @@ class RuleTotalWeaponsIsOddNumber implements ValidationRuleInterface
 
     /**
      * RuleTotalWeaponsIsOddNumber constructor.
-     * @param string $name
-     * @param int $totalWeapons
+     * @param int $totalWeapons The total of weapons in the game
      */
     public function __construct(int $totalWeapons)
     {
