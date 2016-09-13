@@ -42,8 +42,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaperDisprovesSpock()
     {
-        $player1 = new Player("Ricardo V.", "Paper");
-        $player2 = new Player("Anna B.", "Spock");
+        $player1 = new Player("Paper");
+        $player2 = new Player("Spock");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 
@@ -57,8 +57,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testSpockSmashesScissors()
     {
-        $player1 = new Player("Ricardo V.", "Scissors");
-        $player2 = new Player("Anna B.", "Spock");
+        $player1 = new Player("Scissors");
+        $player2 = new Player("Spock");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 
@@ -72,8 +72,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testLizardPoisonsSpock()
     {
-        $player1 = new Player("Ricardo V.", "Lizard");
-        $player2 = new Player("Anna B.", "Spock");
+        $player1 = new Player("Lizard");
+        $player2 = new Player("Spock");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 
@@ -87,8 +87,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testRockCrushesLizard()
     {
-        $player1 = new Player("Ricardo V.", "Rock");
-        $player2 = new Player("Anna B.", "Lizard");
+        $player1 = new Player("Rock");
+        $player2 = new Player("Lizard");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 
@@ -102,8 +102,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testSpockVaporizesRock()
     {
-        $player1 = new Player("Ricardo V.", "Spock");
-        $player2 = new Player("Anna B.", "Rock");
+        $player1 = new Player("Spock");
+        $player2 = new Player("Rock");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 
@@ -117,8 +117,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testLizardEatsPaper()
     {
-        $player1 = new Player("Ricardo V.", "Lizard");
-        $player2 = new Player("Anna B.", "Paper");
+        $player1 = new Player("Lizard");
+        $player2 = new Player("Paper");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 
@@ -132,8 +132,8 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testScissorDecapitatesLizard()
     {
-        $player1 = new Player("Ricardo V.", "Scissors");
-        $player2 = new Player("Anna B.", "Lizard");
+        $player1 = new Player("Scissors");
+        $player2 = new Player("Lizard");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
 

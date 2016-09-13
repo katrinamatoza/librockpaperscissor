@@ -70,8 +70,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
     {
         $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Win";
 
-        $player1 = new Player("Ricardo V.", "Paper");
-        $player2 = new Player("Anna B.", "Rock");
+        $player1 = new Player("Paper");
+        $player2 = new Player("Rock");
 
         $game = new Game($player1, $player2, RockPaperScissorGameTest::getRockPaperScissorRules());
 

@@ -41,8 +41,8 @@ class RockPaperScissorGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaperBeatsRock()
     {
-        $player1 = new Player("Ricardo V.", "Paper");
-        $player2 = new Player("Anna B.", "Rock");
+        $player1 = new Player("Paper");
+        $player2 = new Player("Rock");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorRules());
 
@@ -56,8 +56,8 @@ class RockPaperScissorGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testRockSmashesScissor()
     {
-        $player1 = new Player("Ricardo V.", "Rock");
-        $player2 = new Player("Anna B.", "Scissor");
+        $player1 = new Player("Rock");
+        $player2 = new Player("Scissor");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorRules());
 
@@ -71,8 +71,8 @@ class RockPaperScissorGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaperScissorBeatsPaper()
     {
-        $player1 = new Player("Ricardo V.", "Scissor");
-        $player2 = new Player("Anna B.", "Paper");
+        $player1 = new Player("Scissor");
+        $player2 = new Player("Paper");
 
         $game = new Game($player1, $player2, static::getRockPaperScissorRules());
 

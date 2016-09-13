@@ -32,28 +32,10 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
     /**
      * Confirm that when instantiating a new player there can be no missing or empty data.
      */
-    public function testPlayerNameDataCannotBeEmpty()
-    {
-        $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
-        new Player("", "Rock");
-    }
-
-    /**
-     * Confirm that when instantiating a new player there can be no missing or empty data.
-     */
     public function testPlayerPlayDataCannotBeEmpty()
     {
         $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
-        new Player("Ricardo", "");
-    }
-
-    /**
-     * Confirm that the name of the player matches that one that was set.
-     */
-    public function testName()
-    {
-        $player = new Player("Joe", "Rock");
-        $this->assertEquals("Joe", $player->getName());
+        new Player("");
     }
 
     /**
@@ -61,7 +43,7 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPlay()
     {
-        $player = new Player("Joe", "Rock");
+        $player = new Player("Rock");
         $this->assertEquals("Rock", $player->getPlay());
     }
 }

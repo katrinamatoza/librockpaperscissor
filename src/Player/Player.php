@@ -31,12 +31,6 @@ use Balwan\RockPaperScissor\Exception\MissingDataException;
  */
 class Player {
     /**
-     * The name of the player.
-     * @var string
-     */
-    private $name;
-
-    /**
      * The play that the player used (e.g. Rock, Paper or Scissor).
      * @var string
      */
@@ -44,31 +38,17 @@ class Player {
 
     /**
      * Instantiate a player that will be participating in a game.
-     * @param string $name The name of the player.
      * @param string $play The play/move that the player will perform in the game.
      * @throws MissingDataException
+     * @internal param string $name The name of the player.
      */
-    public function __construct(string $name, string $play)
+    public function __construct(string $play)
     {
-        if(mb_strlen($name) == 0) {
-            throw new MissingDataException("The player's name cannot be empty!");
-        }
-
         if(mb_strlen($play) == 0) {
             throw new MissingDataException("The player's play cannot be empty!");
         }
 
-        $this->name = $name;
         $this->play = $play;
-    }
-
-    /**
-     * Obtain the name of the player.
-     * @return string The name of the player.
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
