@@ -23,7 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\Game\Result;
 
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 
 /**
  * Class Tie
@@ -34,28 +34,28 @@ class Tie extends AbstractGameResult
     /**
      * Instantiates a new result that indicates that the game was a tie. Contrary to the Win class the order of the
      * players is not important but it's recommended to maintain the original order of the players.
-     * @param Player $player1 A player that participated in the game
-     * @param Player $player2 Another player that participated in the game.
+     * @param Move $player1 A player that participated in the game
+     * @param Move $player2 Another player that participated in the game.
      */
-    public function __construct(Player $player1, Player $player2)
+    public function __construct(Move $player1, Move $player2)
     {
         parent::__construct($player1, $player2);
     }
 
     /**
      * Return the winning player.
-     * @return Player
+     * @return Move
      */
-    public function getPlayer1() : Player
+    public function getPlayer1() : Move
     {
         return $this->player1;
     }
 
     /**
      * Return the losing player.
-     * @return Player
+     * @return Move
      */
-    public function getPlayer2() : Player
+    public function getPlayer2() : Move
     {
         return $this->player2;
     }

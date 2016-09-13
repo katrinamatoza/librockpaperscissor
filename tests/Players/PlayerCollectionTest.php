@@ -23,8 +23,8 @@
  */
 namespace Players;
 
-use Balwan\RockPaperScissor\Player\Player;
-use Balwan\RockPaperScissor\Player\PlayerCollection;
+use Balwan\RockPaperScissor\Move\Move;
+use Balwan\RockPaperScissor\Move\MoveCollection;
 
 /**
  * Class PlayerCollectionTest
@@ -37,9 +37,9 @@ class PlayerCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testCollectionCount()
     {
-        $collection = new PlayerCollection();
-        $collection->add(new Player("Ricardo V.", "Rock"));
-        $collection->add(new Player("Anna B.", "Scissor"));
+        $collection = new MoveCollection();
+        $collection->add(new Move("Rock"));
+        $collection->add(new Move("Scissor"));
         $this->assertEquals(2, count($collection), "There should be 2 players in the collection");
     }
 
@@ -49,9 +49,9 @@ class PlayerCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoop()
     {
-        $collection = new PlayerCollection();
-        $collection->add(new Player("Ricardo V.", "Rock"));
-        $collection->add(new Player("Anna B.", "Scissor"));
+        $collection = new MoveCollection();
+        $collection->add(new Move("Rock"));
+        $collection->add(new Move("Scissor"));
 
         $looped = 0;
 

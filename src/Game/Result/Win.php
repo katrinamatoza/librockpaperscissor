@@ -23,7 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\Game\Result;
 
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 use Balwan\RockPaperScissor\Rule\Rule;
 
 /**
@@ -42,11 +42,11 @@ class Win extends AbstractGameResult
 
     /**
      * Win constructor.
-     * @param Player $winner A player that participated in a game.
-     * @param Player $loser The other player that participated in a game.
+     * @param Move $winner A player that participated in a game.
+     * @param Move $loser The other player that participated in a game.
      * @param Rule $rule
      */
-    public function __construct(Player $winner, Player $loser, Rule $rule)
+    public function __construct(Move $winner, Move $loser, Rule $rule)
     {
         parent::__construct($winner, $loser);
         $this->rule = $rule;
@@ -63,18 +63,18 @@ class Win extends AbstractGameResult
 
     /**
      * Return the winning player.
-     * @return Player
+     * @return Move
      */
-    public function getWinner() : Player
+    public function getWinner() : Move
     {
         return $this->player1;
     }
 
     /**
      * Return the losing player.
-     * @return Player
+     * @return Move
      */
-    public function getLoser() : Player
+    public function getLoser() : Move
     {
         return $this->player2;
     }

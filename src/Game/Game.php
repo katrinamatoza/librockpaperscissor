@@ -26,7 +26,7 @@ namespace Balwan\RockPaperScissor\Game;
 use Balwan\RockPaperScissor\Game\Result\AbstractGameResult;
 use Balwan\RockPaperScissor\Game\Result\Win;
 use Balwan\RockPaperScissor\Game\Result\Tie;
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
 
 /**
@@ -43,23 +43,23 @@ class Game
 
     /**
      * The first player of this game.
-     * @var Player
+     * @var Move
      */
     private $player1;
 
     /**
      * The second player of this game.
-     * @var Player
+     * @var Move
      */
     private $player2;
 
     /**
      * Instantiate an RPS-style game.
-     * @param Player $player1 The first player of this game.
-     * @param Player $player2 The second player of this game.
+     * @param Move $player1 The first player of this game.
+     * @param Move $player2 The second player of this game.
      * @param RuleCollection $rules The set of rules that are applicable to this game.
      */
-    public function __construct(Player $player1, Player $player2, RuleCollection $rules)
+    public function __construct(Move $player1, Move $player2, RuleCollection $rules)
     {
         $this->player1 = $player1;
         $this->player2 = $player2;
@@ -90,17 +90,17 @@ class Game
 
     /**
      * Obtain the Player1 of this game.
-     * @return Player
+     * @return Move
      */
-    public function getPlayer1() : Player {
+    public function getPlayer1() : Move {
         return $this->player1;
     }
 
     /**
      * Obtain the Player2 of this game.
-     * @return Player
+     * @return Move
      */
-    public function getPlayer2() : Player {
+    public function getPlayer2() : Move {
         return $this->player2;
     }
 

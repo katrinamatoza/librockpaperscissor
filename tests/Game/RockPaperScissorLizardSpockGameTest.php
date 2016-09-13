@@ -25,7 +25,7 @@ namespace RockPaperScissor\Tests\Game;
 
 use Balwan\RockPaperScissor\Game\Game;
 use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 use Balwan\RockPaperScissor\Rule\Rule;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
 
@@ -42,10 +42,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaperDisprovesSpock()
     {
-        $player1 = new Player("Paper");
-        $player2 = new Player("Spock");
+        $movePlayer1 = new Move("Paper");
+        $movePlayer2 = new Move("Spock");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -57,10 +57,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testSpockSmashesScissors()
     {
-        $player1 = new Player("Scissors");
-        $player2 = new Player("Spock");
+        $movePlayer1 = new Move("Scissors");
+        $movePlayer2 = new Move("Spock");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -72,10 +72,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testLizardPoisonsSpock()
     {
-        $player1 = new Player("Lizard");
-        $player2 = new Player("Spock");
+        $movePlayer1 = new Move("Lizard");
+        $movePlayer2 = new Move("Spock");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -87,10 +87,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testRockCrushesLizard()
     {
-        $player1 = new Player("Rock");
-        $player2 = new Player("Lizard");
+        $movePlayer1 = new Move("Rock");
+        $movePlayer2 = new Move("Lizard");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -102,10 +102,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testSpockVaporizesRock()
     {
-        $player1 = new Player("Spock");
-        $player2 = new Player("Rock");
+        $movePlayer1 = new Move("Spock");
+        $movePlayer2 = new Move("Rock");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -117,10 +117,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testLizardEatsPaper()
     {
-        $player1 = new Player("Lizard");
-        $player2 = new Player("Paper");
+        $movePlayer1 = new Move("Lizard");
+        $movePlayer2 = new Move("Paper");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -132,10 +132,10 @@ class RockPaperScissorLizardSpockGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testScissorDecapitatesLizard()
     {
-        $player1 = new Player("Scissors");
-        $player2 = new Player("Lizard");
+        $movePlayer1 = new Move("Scissors");
+        $movePlayer2 = new Move("Lizard");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorLizardSpockRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorLizardSpockRules());
 
         /** @var Win $result */
         $result = $game->result();

@@ -21,47 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Player;
+namespace Balwan\RockPaperScissor\Move;
 
-use Countable;
-use ArrayIterator;
-use IteratorAggregate;
+use Balwan\RockPaperScissor\Exception\MissingDataException;
 
 /**
- * Class PlayerCollection
- * @package Balwan\RockPaperScissor\Player
+ * This class represents a single player that is participating in a game.
+ * @package Balwan\RockPaperScissor\Move
  */
-class PlayerCollection implements IteratorAggregate, Countable
-{
+class Move {
     /**
-     * The list of eligible players that are going to participate in the games.
-     * @var array
+     * The play that the player used (e.g. Rock, Paper or Scissor).
+     * @var string
      */
-    private $players = [];
+    private $play;
 
     /**
-     * Add a player to the collection. This class implements an Iterator class that allows array-like access to its
-     * contents so you can just add items to the collection.
-     * @param Player $player
+     * Instantiate a player that will be participating in a game.
+     * @param string $play The play/move that the player will perform in the game.
+     * @throws MissingDataException
+     * @internal param string $name The name of the player.
      */
-    public function add(Player $player)
+    public function __construct(string $play)
     {
-        $this->players[] = $player;
+        if(mb_strlen($play) == 0) {
+            throw new MissingDataException("The player's play cannot be empty!");
+        }
+
+        $this->play = $play;
     }
 
     /**
-     * @inheritDoc
+     * Obtain the play that the player is using in this game.
+     * @return string The name of the play that was played by the player.
      */
-    public function getIterator()
+    public function getPlay()
     {
-        return new ArrayIterator($this->players);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function count()
-    {
-        return count($this->players);
+        return $this->play;
     }
 }

@@ -23,7 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\DataProvider;
 
-use Balwan\RockPaperScissor\Player\PlayerCollection;
+use Balwan\RockPaperScissor\Move\MoveCollection;
 
 /**
  * Interface DataProviderInterface
@@ -41,8 +41,8 @@ interface DataProviderInterface
      * This interface only specified the data source and does and should not handle the games themselves.
      *
      * @param string $query The query to search for. This should be a #hashtag ideally.
-     * @return PlayerCollection The list of players from this provider and what their play was
-     * @see PlayerCollection
+     * @return MoveCollection The list of players from this provider and what their play was
+     * @see MoveCollection
      */
-    public function get(string $query) : PlayerCollection;
+    public function get(string $query) : MoveCollection;
 }

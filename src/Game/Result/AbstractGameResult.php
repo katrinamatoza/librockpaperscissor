@@ -23,7 +23,7 @@
  */
 namespace Balwan\RockPaperScissor\Game\Result;
 
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 
 /**
  * Abstract Class AbstractGameResult
@@ -33,13 +33,13 @@ abstract class AbstractGameResult
 {
     /**
      * The player that won the game (although it can be whatever you desire).
-     * @var Player
+     * @var Move
      */
     protected $player1;
 
     /**
      * The player that lost the game (although it can be whatever you desire).
-     * @var Player
+     * @var Move
      */
     protected $player2;
 
@@ -47,13 +47,13 @@ abstract class AbstractGameResult
      * You should not instantiate this class directly unless you are introducing a new type of result. For regular
      * cases you should use the Win or Tie classes.
      *
-     * @param Player $player1 A player (e.g. the winner)
-     * @param Player $player2 Another player (e.g. the loser)
+     * @param Move $player1 A player (e.g. the winner)
+     * @param Move $player2 Another player (e.g. the loser)
      *
      * @see Tie
      * @see Win
      */
-    public function __construct(Player $player1, Player $player2)
+    public function __construct(Move $player1, Move $player2)
     {
         $this->player1 = $player1;
         $this->player2 = $player2;

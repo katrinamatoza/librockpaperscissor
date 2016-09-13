@@ -24,7 +24,7 @@
 use Balwan\RockPaperScissor\Game\Game;
 use Balwan\RockPaperScissor\Game\Result\Tie;
 use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
 use Balwan\RockPaperScissor\Rule\Rule;
 
@@ -34,8 +34,8 @@ $player1Played = $argv[1];
 $availablePlays = ["Rock", "Paper", "Scissor"];
 
 // Players of the gaaaaame!
-$player1 = new Player("You", $player1Played);
-$player2 = new Player("The Computer", $availablePlays[mt_rand(0, 2)]);
+$player1 = new Move($player1Played);
+$player2 = new Move($availablePlays[mt_rand(0, 2)]);
 
 // The ruleset for a regular Rock Paper Scissor game.
 $rules = new RuleCollection();
@@ -53,18 +53,16 @@ if($validationResult->isValid()) {
     // as the winning rule. A Tie just contains the players. You can do whatever you want with the data.
     if($result instanceof Tie) {
         /** @var Balwan\RockPaperScissor\Game\Result\Tie $result */
-        print "\n» ".$result->getPlayer1()->getName()." tied ".$result->getPlayer2()->getName()."\n";
-        print "» ".$result->getPlayer1()->getName(). " played ".$result->getPlayer1()->getPlay()."\n";
-        print "» ".$result->getPlayer2()->getName(). " played ".$result->getPlayer2()->getPlay()."\n";
+        print "\n» ".$result->getPlayer1()->getPlay()." vs ".$result->getPlayer2()->getPlay()."\n";
+        print "» TIE\n";
     } else if($result instanceof Win) {
         /** @var Balwan\RockPaperScissor\Game\Result\Win $result */
         print "\n» ".$result->getRule()->getText()."\n================\n";
 
         // Detailed
-        print "» ".$result->getWinner()->getName(). " played ".$result->getWinner()->getPlay()."\n";
-        print "» ".$result->getLoser()->getName(). " played ".$result->getLoser()->getPlay()."\n";
+        print "\n» ".$result->getWinner()->getPlay()." vs ".$result->getLoser()->getPlay()."\n";
         print "» ".$result->getRule()->getWinner()." ".$result->getRule()->getOutcome()." ".$result->getRule()->getLoser()."\n";
-        print "» ".$result->getWinner()->getName()." Win(s)!\n\n";
+        print "» ".$result->getWinner()->getPlay()." Wins!\n\n";
     } else {
         echo "Oops :P";
     }

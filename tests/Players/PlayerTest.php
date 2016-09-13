@@ -23,9 +23,11 @@
  */
 namespace Balwan\RockPaperScissor\Player;
 
+use Balwan\RockPaperScissor\Move\Move;
+
 /**
  * Class PlayerTest
- * @package Player
+ * @package Move
  */
 class PlayerTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,7 +37,7 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
     public function testPlayerPlayDataCannotBeEmpty()
     {
         $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
-        new Player("");
+        new Move("");
     }
 
     /**
@@ -43,7 +45,7 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPlay()
     {
-        $player = new Player("Rock");
-        $this->assertEquals("Rock", $player->getPlay());
+        $move = new Move("Rock");
+        $this->assertEquals("Rock", $move->getPlay());
     }
 }

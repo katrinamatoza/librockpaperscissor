@@ -21,42 +21,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Player;
+namespace Balwan\RockPaperScissor\Move;
 
-use Balwan\RockPaperScissor\Exception\MissingDataException;
+use Countable;
+use ArrayIterator;
+use IteratorAggregate;
 
 /**
- * This class represents a single player that is participating in a game.
- * @package Balwan\RockPaperScissor\Player
+ * Class PlayerCollection
+ * @package Balwan\RockPaperScissor\Move
  */
-class Player {
+class MoveCollection implements IteratorAggregate, Countable
+{
     /**
-     * The play that the player used (e.g. Rock, Paper or Scissor).
-     * @var string
+     * The list of eligible players that are going to participate in the games.
+     * @var array
      */
-    private $play;
+    private $players = [];
 
     /**
-     * Instantiate a player that will be participating in a game.
-     * @param string $play The play/move that the player will perform in the game.
-     * @throws MissingDataException
-     * @internal param string $name The name of the player.
+     * Add a player to the collection. This class implements an Iterator class that allows array-like access to its
+     * contents so you can just add items to the collection.
+     * @param Move $player
      */
-    public function __construct(string $play)
+    public function add(Move $player)
     {
-        if(mb_strlen($play) == 0) {
-            throw new MissingDataException("The player's play cannot be empty!");
-        }
-
-        $this->play = $play;
+        $this->players[] = $player;
     }
 
     /**
-     * Obtain the play that the player is using in this game.
-     * @return string The name of the play that was played by the player.
+     * @inheritDoc
      */
-    public function getPlay()
+    public function getIterator()
     {
-        return $this->play;
+        return new ArrayIterator($this->players);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function count()
+    {
+        return count($this->players);
     }
 }

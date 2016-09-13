@@ -26,7 +26,7 @@ namespace RockPaperScissor\Tests;
 use Balwan\RockPaperScissor\Game\Game;
 use Balwan\RockPaperScissor\Game\Result\Tie;
 use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 use RockPaperScissor\Tests\Game\RockPaperScissorGameTest;
 use RockPaperScissor\Tests\Game\RockPaperScissorLizardSpockGameTest;
 
@@ -40,8 +40,6 @@ use RockPaperScissor\Tests\Game\RockPaperScissorLizardSpockGameTest;
  */
 class GameTest extends \PHPUnit_Framework_TestCase
 {
-
-
     /**
      *
      */
@@ -49,17 +47,17 @@ class GameTest extends \PHPUnit_Framework_TestCase
     {
         $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Tie";
 
-        $player1 = new Player("Ricardo V.", "Paper");
-        $player2 = new Player("Anna B.", "Paper");
+        $movePlayer1 = new Move("Paper");
+        $movePlayer2 = new Move("Paper");
 
-        $game = new Game($player1, $player2, RockPaperScissorGameTest::getRockPaperScissorRules());
+        $game = new Game($movePlayer1, $movePlayer2, RockPaperScissorGameTest::getRockPaperScissorRules());
 
         /** @var Tie $result */
         $result = $game->result();
 
         $this->assertInstanceOf($className, $result, "Result is not a Tie instance");
-        $this->assertEquals($player1, $result->getPlayer1(), "Player 1 in the Tie instance is the original object");
-        $this->assertEquals($player2, $result->getPlayer2(), "Player 1 in the Tie instance is the original object");
+        $this->assertEquals($movePlayer1, $result->getPlayer1(), "Move 1 in the Tie instance is the original object");
+        $this->assertEquals($movePlayer2, $result->getPlayer2(), "Move 1 in the Tie instance is the original object");
     }
 
     /**
@@ -70,17 +68,17 @@ class GameTest extends \PHPUnit_Framework_TestCase
     {
         $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Win";
 
-        $player1 = new Player("Paper");
-        $player2 = new Player("Rock");
+        $movePlayer1 = new Move("Paper");
+        $movePlayer2 = new Move("Rock");
 
-        $game = new Game($player1, $player2, RockPaperScissorGameTest::getRockPaperScissorRules());
+        $game = new Game($movePlayer1, $movePlayer2, RockPaperScissorGameTest::getRockPaperScissorRules());
 
         /** @var Win $result */
         $result = $game->result();
 
         $this->assertInstanceOf($className, $result, "Result is not a Win instance");
-        $this->assertEquals($player1, $result->getWinner(), "The winner is incorrect in this game result.");
-        $this->assertEquals($player2, $result->getLoser(), "The loser is incorrect in this game result.");
+        $this->assertEquals($movePlayer1, $result->getWinner(), "The winner is incorrect in this game result.");
+        $this->assertEquals($movePlayer2, $result->getLoser(), "The loser is incorrect in this game result.");
     }
 
 
@@ -89,12 +87,12 @@ class GameTest extends \PHPUnit_Framework_TestCase
      */
     public function testGettingPlayers()
     {
-        $player1 = new Player("Ricardo V.", "Scissors");
-        $player2 = new Player("Anna B.", "Lizard");
-        $game = new Game($player1, $player2, RockPaperScissorLizardSpockGameTest::getRockPaperScissorLizardSpockRules());
+        $movePlayer1 = new Move("Scissors");
+        $movePlayer2 = new Move("Lizard");
+        $game = new Game($movePlayer1, $movePlayer2, RockPaperScissorLizardSpockGameTest::getRockPaperScissorLizardSpockRules());
 
-        $this->assertEquals($player1, $game->getPlayer1(), "Player1 is invalid or the original changed.");
-        $this->assertEquals($player2, $game->getPlayer2(), "Player2 is invalid or the original changed.");
+        $this->assertEquals($movePlayer1, $game->getPlayer1(), "Player1 is invalid or the original changed.");
+        $this->assertEquals($movePlayer2, $game->getPlayer2(), "Player2 is invalid or the original changed.");
     }
 
     /**
@@ -102,10 +100,11 @@ class GameTest extends \PHPUnit_Framework_TestCase
      */
     public function testGettingRules()
     {
-        $player1 = new Player("Ricardo V.", "Scissors");
-        $player2 = new Player("Anna B.", "Lizard");
+        $movePlayer1 = new Move("Scissors");
+        $movePlayer2 = new Move("Lizard");
+
         $rules = RockPaperScissorLizardSpockGameTest::getRockPaperScissorLizardSpockRules();
-        $game = new Game($player1, $player2, $rules);
+        $game = new Game($movePlayer1, $movePlayer2, $rules);
 
         $this->assertEquals($rules, $game->getRules(), "The object that was passed in the constructor is incorrect.");
     }

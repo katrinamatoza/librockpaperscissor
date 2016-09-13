@@ -25,7 +25,7 @@ namespace RockPaperScissor\Tests\Game;
 
 use Balwan\RockPaperScissor\Game\Game;
 use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Player\Player;
+use Balwan\RockPaperScissor\Move\Move;
 use Balwan\RockPaperScissor\Rule\Rule;
 use Balwan\RockPaperScissor\Rule\RuleCollection;
 
@@ -41,10 +41,10 @@ class RockPaperScissorGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaperBeatsRock()
     {
-        $player1 = new Player("Paper");
-        $player2 = new Player("Rock");
+        $movePlayer1 = new Move("Paper");
+        $movePlayer2 = new Move("Rock");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -56,10 +56,10 @@ class RockPaperScissorGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testRockSmashesScissor()
     {
-        $player1 = new Player("Rock");
-        $player2 = new Player("Scissor");
+        $movePlayer1 = new Move("Rock");
+        $movePlayer2 = new Move("Scissor");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorRules());
 
         /** @var Win $result */
         $result = $game->result();
@@ -71,10 +71,10 @@ class RockPaperScissorGameTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaperScissorBeatsPaper()
     {
-        $player1 = new Player("Scissor");
-        $player2 = new Player("Paper");
+        $movePlayer1 = new Move("Scissor");
+        $movePlayer2 = new Move("Paper");
 
-        $game = new Game($player1, $player2, static::getRockPaperScissorRules());
+        $game = new Game($movePlayer1, $movePlayer2, static::getRockPaperScissorRules());
 
         /** @var Win $result */
         $result = $game->result();
