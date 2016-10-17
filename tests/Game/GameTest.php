@@ -23,10 +23,10 @@
  */
 namespace RockPaperScissor\Tests;
 
-use Balwan\RockPaperScissor\Game\Game;
-use Balwan\RockPaperScissor\Game\Result\Tie;
-use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Move\Move;
+use Welhott\RockPaperScissor\Game\Game;
+use Welhott\RockPaperScissor\Game\Result\Tie;
+use Welhott\RockPaperScissor\Game\Result\Win;
+use Welhott\RockPaperScissor\Move\Move;
 use RockPaperScissor\Tests\Game\RockPaperScissorGameTest;
 use RockPaperScissor\Tests\Game\RockPaperScissorLizardSpockGameTest;
 
@@ -45,7 +45,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
      */
     public function testTie()
     {
-        $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Tie";
+        $className = "\\Welhott\\RockPaperScissor\\Game\\Result\\Tie";
 
         $movePlayer1 = new Move("Paper");
         $movePlayer2 = new Move("Paper");
@@ -66,7 +66,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
      */
     public function testWin()
     {
-        $className = "\\Balwan\\RockPaperScissor\\Game\\Result\\Win";
+        $className = "\\Welhott\\RockPaperScissor\\Game\\Result\\Win";
 
         $movePlayer1 = new Move("Paper");
         $movePlayer2 = new Move("Rock");

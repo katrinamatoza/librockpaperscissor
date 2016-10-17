@@ -21,20 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule;
+namespace Welhott\RockPaperScissor\Rule;
 
 use ArrayIterator;
 use IteratorAggregate;
-use Balwan\RockPaperScissor\Validation\ValidationMessage;
-use Balwan\RockPaperScissor\Validation\ValidationResult;
-use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
-use Balwan\RockPaperScissor\Validation\Rule\RuleBalancedWeaponOutcome;
-use Balwan\RockPaperScissor\Validation\Rule\RuleTotalWeaponsIsOddNumber;
-use Balwan\RockPaperScissor\Validation\Rule\RuleExpectedTotalRules;
+use Welhott\RockPaperScissor\Validation\ValidationMessage;
+use Welhott\RockPaperScissor\Validation\ValidationResult;
+use Welhott\RockPaperScissor\Validation\ValidationRuleInterface;
+use Welhott\RockPaperScissor\Validation\Rule\RuleBalancedWeaponOutcome;
+use Welhott\RockPaperScissor\Validation\Rule\RuleTotalWeaponsIsOddNumber;
+use Welhott\RockPaperScissor\Validation\Rule\RuleExpectedTotalRules;
 
 /**
  * Class RuleCollection
- * @package Balwan\RockPaperScissor\Rule
+ * @package Welhott\RockPaperScissor\Rule
  */
 class RuleCollection implements IteratorAggregate
 {
@@ -69,9 +69,9 @@ class RuleCollection implements IteratorAggregate
      * @param string $winner The weapon that wins this rule.
      * @param string $loser The weapon that loses this rule.
      *
-     * @return Rule|null An instance of Balwan\RockPaperScissor\Rule\Rule or null if the rule is not found
+     * @return Rule|null An instance of Welhott\RockPaperScissor\Rule\Rule or null if the rule is not found
      *
-     * @see Balwan\RockPaperScissor\Rules\Rule
+     * @see Welhott\RockPaperScissor\Rules\Rule
      *
      * TODO Implement Null Object Pattern?
      */

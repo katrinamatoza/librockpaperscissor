@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Validation;
+namespace Welhott\RockPaperScissor\Validation;
 
 /**
  * Class ValidationResult
- * @package Balwan\RockPaperScissor\Rule\Validation
+ * @package Welhott\RockPaperScissor\Rule\Validation
  */
 class ValidationResult
 {

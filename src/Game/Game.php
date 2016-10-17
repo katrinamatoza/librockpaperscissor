@@ -21,17 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Game;
+namespace Welhott\RockPaperScissor\Game;
 
-use Balwan\RockPaperScissor\Game\Result\AbstractGameResult;
-use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Game\Result\Tie;
-use Balwan\RockPaperScissor\Move\Move;
-use Balwan\RockPaperScissor\Rule\RuleCollection;
+use Welhott\RockPaperScissor\Game\Result\AbstractGameResult;
+use Welhott\RockPaperScissor\Game\Result\Win;
+use Welhott\RockPaperScissor\Game\Result\Tie;
+use Welhott\RockPaperScissor\Move\Move;
+use Welhott\RockPaperScissor\Rule\RuleCollection;
 
 /**
  * This class defines a game between two players and the set of rules that is to be applied.
- * @package Balwan\RockPaperScissor\Game
+ * @package Welhott\RockPaperScissor\Game
  */
 class Game
 {

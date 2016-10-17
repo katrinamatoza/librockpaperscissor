@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Move;
+namespace Welhott\RockPaperScissor\Move;
 
 use Countable;
 use ArrayIterator;
@@ -29,7 +29,7 @@ use IteratorAggregate;
 
 /**
  * Class PlayerCollection
- * @package Balwan\RockPaperScissor\Move
+ * @package Welhott\RockPaperScissor\Move
  */
 class MoveCollection implements IteratorAggregate, Countable
 {

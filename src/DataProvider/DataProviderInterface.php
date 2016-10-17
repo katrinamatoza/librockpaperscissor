@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\DataProvider;
+namespace Welhott\RockPaperScissor\DataProvider;
 
-use Balwan\RockPaperScissor\Move\MoveCollection;
+use Welhott\RockPaperScissor\Move\MoveCollection;
 
 /**
  * Interface DataProviderInterface
- * @package Balwan\RockPaperScissor\DataProvider
+ * @package Welhott\RockPaperScissor\DataProvider
  */
 interface DataProviderInterface
 {

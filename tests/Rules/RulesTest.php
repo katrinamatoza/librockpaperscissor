@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule;
+namespace Welhott\RockPaperScissor\Rule;
 
 /**
  * Class RulesTest
- * @package Balwan\RockPaperScissor\Rule
+ * @package Welhott\RockPaperScissor\Rule
  */
 class RulesTest extends \PHPUnit_Framework_TestCase
 {
@@ -91,7 +91,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
      */
     public function testCannotAddEqualWinnerAndLoser()
     {
-        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\InvalidRuleException");
+        $this->expectException("\\Welhott\\RockPaperScissor\\Exception\\InvalidRuleException");
         new Rule("Scissors", "Scissors", "Cuts");
     }
 
@@ -158,7 +158,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
      */
     public function testMissingWinner()
     {
-        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        $this->expectException("\\Welhott\\RockPaperScissor\\Exception\\MissingDataException");
         new Rule("", "Scissors", "Crushes");
     }
 
@@ -167,7 +167,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
      */
     public function testMissingLoser()
     {
-        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        $this->expectException("\\Welhott\\RockPaperScissor\\Exception\\MissingDataException");
         new Rule("Rock", "", "Crushes");
     }
 
@@ -176,7 +176,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
      */
     public function testMissingOutcome()
     {
-        $this->expectException("\\Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        $this->expectException("\\Welhott\\RockPaperScissor\\Exception\\MissingDataException");
         new Rule("Rock", "Scissor", "");
     }
 

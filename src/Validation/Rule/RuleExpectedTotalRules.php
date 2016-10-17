@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Validation\Rule;
+namespace Welhott\RockPaperScissor\Validation\Rule;
 
-use Balwan\RockPaperScissor\Validation\ValidationMessage;
-use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
+use Welhott\RockPaperScissor\Validation\ValidationMessage;
+use Welhott\RockPaperScissor\Validation\ValidationRuleInterface;
 
 /**
  * Class RuleExpectedTotalRules
- * @package Balwan\RockPaperScissor\Rule\Validation\Rule
+ * @package Welhott\RockPaperScissor\Rule\Validation\Rule
  */
 class RuleExpectedTotalRules implements ValidationRuleInterface
 {

@@ -23,8 +23,8 @@
  */
 namespace Players;
 
-use Balwan\RockPaperScissor\Move\Move;
-use Balwan\RockPaperScissor\Move\MoveCollection;
+use Welhott\RockPaperScissor\Move\Move;
+use Welhott\RockPaperScissor\Move\MoveCollection;
 
 /**
  * Class PlayerCollectionTest

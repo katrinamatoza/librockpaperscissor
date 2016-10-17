@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rule;
+namespace Welhott\RockPaperScissor\Rule;
 
-use Balwan\RockPaperScissor\Exception\InvalidRuleException;
-use Balwan\RockPaperScissor\Exception\MissingDataException;
+use Welhott\RockPaperScissor\Exception\InvalidRuleException;
+use Welhott\RockPaperScissor\Exception\MissingDataException;
 
 /**
  * Class Rule

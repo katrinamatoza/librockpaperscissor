@@ -21,16 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Validation\Rule;
+namespace Welhott\RockPaperScissor\Validation\Rule;
 
-use Balwan\RockPaperScissor\Rule\Rule;
-use Balwan\RockPaperScissor\Rule\RuleCollection;
-use Balwan\RockPaperScissor\Validation\ValidationMessage;
-use Balwan\RockPaperScissor\Validation\ValidationRuleInterface;
+use Welhott\RockPaperScissor\Rule\Rule;
+use Welhott\RockPaperScissor\Rule\RuleCollection;
+use Welhott\RockPaperScissor\Validation\ValidationMessage;
+use Welhott\RockPaperScissor\Validation\ValidationRuleInterface;
 
 /**
  * Class RuleBalancedWeaponOutcome
- * @package Balwan\RockPaperScissor\Rule\Validation
+ * @package Welhott\RockPaperScissor\Rule\Validation
  */
 class RuleBalancedWeaponOutcome implements ValidationRuleInterface
 {

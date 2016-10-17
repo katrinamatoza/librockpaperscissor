@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Game\Result;
+namespace Welhott\RockPaperScissor\Game\Result;
 
-use Balwan\RockPaperScissor\Move\Move;
+use Welhott\RockPaperScissor\Move\Move;
 
 /**
  * Abstract Class AbstractGameResult
- * @package Balwan\RockPaperScissor\Game\Result
+ * @package Welhott\RockPaperScissor\Game\Result
  */
 abstract class AbstractGameResult
 {

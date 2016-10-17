@@ -1,5 +1,5 @@
 {
-  "name": "balwan/rock-paper-scissor",
+  "name": "welhott/rock-paper-scissor",
   "type": "library",
   "description": "A PHP library to create games based on Rock Paper Scissor.",
   "minimum-stability": "stable",
@@ -13,12 +13,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "Balwan\\RockPaperScissor\\": "src/"
+      "Welhott\\RockPaperScissor\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Balwan\\RockPaperScissor\\": "tests/"
+      "Welhott\\RockPaperScissor\\": "tests/"
     }
   },
   "require": {

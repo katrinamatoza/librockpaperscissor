@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Rules\Validation;
-use Balwan\RockPaperScissor\Rule\Rule;
-use Balwan\RockPaperScissor\Rule\RuleCollection;
+namespace Welhott\RockPaperScissor\Rules\Validation;
+use Welhott\RockPaperScissor\Rule\Rule;
+use Welhott\RockPaperScissor\Rule\RuleCollection;
 
 /**
  * Class ValidationResultTest

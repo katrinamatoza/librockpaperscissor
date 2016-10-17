@@ -23,8 +23,8 @@
  */
 namespace Rule;
 
-use Balwan\RockPaperScissor\Rule\Rule;
-use Balwan\RockPaperScissor\Rule\RuleCollection;
+use Welhott\RockPaperScissor\Rule\Rule;
+use Welhott\RockPaperScissor\Rule\RuleCollection;
 
 /**
  * Class RuleCollectionTest

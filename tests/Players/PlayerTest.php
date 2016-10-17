@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Player;
+namespace Welhott\RockPaperScissor\Player;
 
-use Balwan\RockPaperScissor\Move\Move;
+use Welhott\RockPaperScissor\Move\Move;
 
 /**
  * Class PlayerTest
@@ -36,7 +36,7 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPlayerPlayDataCannotBeEmpty()
     {
-        $this->expectException("Balwan\\RockPaperScissor\\Exception\\MissingDataException");
+        $this->expectException("Welhott\\RockPaperScissor\\Exception\\MissingDataException");
         new Move("");
     }
 

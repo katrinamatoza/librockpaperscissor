@@ -64,12 +64,12 @@ if($validationResult->isValid()) {
     // A game result can be either a Win or a Tie. A Win contains the players that participated (and their plays) as well
     // as the winning rule. A Tie just contains the players. You can do whatever you want with the data.
     if($result instanceof Tie) {
-        /** @var Balwan\RockPaperScissor\Game\Result\Tie $result */
+        /** @var Welhott\RockPaperScissor\Game\Result\Tie $result */
         print "\n» ".$result->getPlayer1()->getName()." tied ".$result->getPlayer2()->getName()."\n";
         print "» ".$result->getPlayer1()->getName(). " played ".$result->getPlayer1()->getPlay()."\n";
         print "» ".$result->getPlayer2()->getName(). " played ".$result->getPlayer2()->getPlay()."\n";
     } else if($result instanceof Win) {
-        /** @var Balwan\RockPaperScissor\Game\Result\Win $result */
+        /** @var Welhott\RockPaperScissor\Game\Result\Win $result */
         print "\n» ".$result->getRule()->getText()."\n================\n";
 
         // Detailed
@@ -81,10 +81,10 @@ if($validationResult->isValid()) {
         echo "Oops :P";
     }
 } else {
-    $reflection = new ReflectionClass("\\Balwan\\RockPaperScissor\\Validation\\ValidationMessage");
+    $reflection = new ReflectionClass("\\Welhott\\RockPaperScissor\\Validation\\ValidationMessage");
     $constants = $reflection->getConstants();
 
-    /** @var \Balwan\RockPaperScissor\Validation\ValidationMessage $message */
+    /** @var \Welhott\RockPaperScissor\Validation\ValidationMessage $message */
     foreach($validationResult->getMessages() as $message) {
         $constant = array_search($message->getType(), $constants);
         print "» ".$constant." » ".$message->getMessage()."\n";

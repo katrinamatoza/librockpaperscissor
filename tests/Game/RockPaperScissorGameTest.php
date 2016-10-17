@@ -23,11 +23,11 @@
  */
 namespace RockPaperScissor\Tests\Game;
 
-use Balwan\RockPaperScissor\Game\Game;
-use Balwan\RockPaperScissor\Game\Result\Win;
-use Balwan\RockPaperScissor\Move\Move;
-use Balwan\RockPaperScissor\Rule\Rule;
-use Balwan\RockPaperScissor\Rule\RuleCollection;
+use Welhott\RockPaperScissor\Game\Game;
+use Welhott\RockPaperScissor\Game\Result\Win;
+use Welhott\RockPaperScissor\Move\Move;
+use Welhott\RockPaperScissor\Rule\Rule;
+use Welhott\RockPaperScissor\Rule\RuleCollection;
 
 /**
  * Class RockPaperScissorGameTest.

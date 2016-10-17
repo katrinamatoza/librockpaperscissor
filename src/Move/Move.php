@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-namespace Balwan\RockPaperScissor\Move;
+namespace Welhott\RockPaperScissor\Move;
 
-use Balwan\RockPaperScissor\Exception\MissingDataException;
+use Welhott\RockPaperScissor\Exception\MissingDataException;
 
 /**
  * This class represents a single player that is participating in a game.
- * @package Balwan\RockPaperScissor\Move
+ * @package Welhott\RockPaperScissor\Move
  */
 class Move {
     /**
