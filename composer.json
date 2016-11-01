@@ -1,5 +1,5 @@
 {
-  "name": "welhott/rock-paper-scissor",
+  "name": "welhott/librockpaperscissor",
   "type": "library",
   "description": "A PHP library to create games based on Rock Paper Scissor.",
   "minimum-stability": "stable",
